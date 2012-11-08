@@ -60,9 +60,16 @@ public class TestAlphaCiv {
 
     @Test
     public void unitsCannotMoveOverMountains() {
-        Tile t = new TileImpl(new Position(2, 2),"Mountain");
-        assertNotNull("There should be at tile at (2,2)",t);
-        assertEquals("The tile should be of type mountain", "Mountain", t.getTypeString());
         assertFalse("Unit cannot move over mountains",game.moveUnit(new Position(2, 3), new Position(2,2)));
+    }
+
+    @Test
+    public void unitsCannotMoveOverOcean() {
+        assertFalse("Unit cannot move over ocean",game.moveUnit(new Position(0, 0), new Position(1,0)));
+    }
+
+    @Test
+    public void redIsFirst() {
+        assertEquals("Red should start first",Player.RED,game.getPlayerInTurn());
     }
 }

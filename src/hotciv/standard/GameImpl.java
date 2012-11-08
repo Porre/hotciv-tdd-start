@@ -50,7 +50,6 @@ public class GameImpl implements Game {
         return null;
     }
 
-
     public Unit getUnitAt( Position p ) { return null; }
 
     public City getCityAt(Position p) {
@@ -59,11 +58,27 @@ public class GameImpl implements Game {
 
 
     public Player getPlayerInTurn() { return null; }
+
     public Player getWinner() { return null; }
     public int getAge() { return 0; }
+
     public boolean moveUnit( Position from, Position to ) {
-        return true;
+        Tile tileTo = null;
+        for (int i = 0; i < tiles.size(); i++){
+            Tile t = tiles.get(i);
+            if (t.getPosition().equals(to)) {
+                tileTo = t;
+                break;
+            }
+        }
+
+        if (tileTo.getTypeString().equals("Mountain") || tileTo.getTypeString().equals("Ocean")) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
     public void endOfTurn() {}
     public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
     public void changeProductionInCityAt( Position p, String unitType ) {}
