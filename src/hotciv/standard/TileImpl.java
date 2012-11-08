@@ -11,13 +11,21 @@ import hotciv.framework.Tile;
  * To change this template use File | Settings | File Templates.
  */
 public class TileImpl implements Tile {
+    private Position position;
+    private String type;
+
+    public TileImpl(Position position, String type) {
+        this.position = position;
+        this.type = type;
+    }
+
     @Override
     public Position getPosition() {
-        return null;
+        return position;
     }
 
     @Override
     public String getTypeString() {
-        return "Ocean";
+        return type;
     }
 }

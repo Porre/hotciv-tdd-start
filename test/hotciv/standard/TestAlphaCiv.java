@@ -39,16 +39,30 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldHaveOceanAt1_0() {
-        Tile t = game.getTileAt(new Position(1, 0));
+        Tile t = game.getTileAt(new Position(1,0));
         assertNotNull("There should be a tile at (1, 0)", t);
         assertEquals("The tile should be of type Ocean", "Ocean", t.getTypeString());
     }
 
     @Test
-    public void unitsCannotMoveOverMountains() {
+    public void shouldHaveHillAt0_1() {
+        Tile t = game.getTileAt(new Position(0,1));
+        assertNotNull("There should be a tile at (0, 1)", t);
+        assertEquals("The tile should be of type Hill", "Hill", t.getTypeString());
+    }
+
+    @Test
+    public void shouldHaveMountainAt2_2() {
         Tile t = game.getTileAt(new Position(2,2));
-        assertNotNull("There should be at tile at (3,4)",t);
+        assertNotNull("There should be a tile at (2, 2)", t);
+        assertEquals("The tile should be of type Mountain", "Mountain", t.getTypeString());
+    }
+
+    @Test
+    public void unitsCannotMoveOverMountains() {
+        Tile t = new TileImpl(new Position(2, 2),"Mountain");
+        assertNotNull("There should be at tile at (2,2)",t);
         assertEquals("The tile should be of type mountain", "Mountain", t.getTypeString());
-        assertFalse("Unit cannot move over mountains",game.moveUnit(new Position(3, 3), new Position(3,4)));
+        assertFalse("Unit cannot move over mountains",game.moveUnit(new Position(2, 3), new Position(2,2)));
     }
 }
