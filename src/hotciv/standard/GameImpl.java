@@ -22,64 +22,97 @@ import java.util.ArrayList;
 */
 
 public class GameImpl implements Game {
-    private ArrayList<Tile> tiles = new ArrayList<Tile>();
+
+    private Tile[][] world;
+    private ArrayList<CityPair> cities;
+    private Player currentPlayer;
+    private int gameAge;
 
     public GameImpl() {
+        // Initialize arraylist
+        cities = new ArrayList<CityPair>();
+
+        // Game starts in 4000 BC
+        gameAge = -4000;
+
+        // RED player starts
+        currentPlayer = Player.RED;
+
+        // Red city in (1,1), blue city in (4,1)
+        City blueCity = new CityImpl(Player.BLUE);
+        City redCity = new CityImpl(Player.RED);
+        cities.add(new CityPair(new Position(1,1), redCity));
+        cities.add(new CityPair(new Position(4,1), blueCity));
+
+        // 16x16 array of tiles (the world)
+        world = new Tile[16][16];
+
+        // Everything is plains except (1,0), (0,1), (2,2)
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                if (i == 1 && j == 0) {
-                    tiles.add(new TileImpl(new Position(i,j), "Ocean"));
-                } else if (i == 0 && j == 1) {
-                    tiles.add(new TileImpl(new Position(i,j),"Hill"));
-                } else if (i == 2 && j == 2) {
-                    tiles.add(new TileImpl(new Position(i,j),"Mountain"));
-                } else {
-                    tiles.add(new TileImpl(new Position(i,j),"Plain"));
-                }
+                world[i][j] = new TileImpl(new Position(i, j), GameConstants.PLAINS);
             }
         }
+
+        world[1][0] = new TileImpl(new Position(1,0), GameConstants.OCEANS);
+        world[0][1] = new TileImpl(new Position(1,0), GameConstants.HILLS);
+        world[2][2] = new TileImpl(new Position(1,0), GameConstants.MOUNTAINS);
      }
 
     public Tile getTileAt( Position p ) {
-        for (int i = 0; i < tiles.size(); i++){
-            Tile t = tiles.get(i);
-            if (t.getPosition().equals(p)) {
-                return t;
-            }
-        }
-        return null;
+        return world[p.getRow()][p.getColumn()];
     }
 
     public Unit getUnitAt( Position p ) { return null; }
 
     public City getCityAt(Position p) {
-        return new CityImpl();
-    }
-
-
-    public Player getPlayerInTurn() { return null; }
-
-    public Player getWinner() { return null; }
-    public int getAge() { return 0; }
-
-    public boolean moveUnit( Position from, Position to ) {
-        Tile tileTo = null;
-        for (int i = 0; i < tiles.size(); i++){
-            Tile t = tiles.get(i);
-            if (t.getPosition().equals(to)) {
-                tileTo = t;
-                break;
+        for (int i = 0; i < cities.size(); i++) {
+            if (cities.get(i).getPosition().equals(p)) {
+                return cities.get(i).getCity();
             }
         }
+        return null;
+    }
 
-        if (tileTo.getTypeString().equals("Mountain") || tileTo.getTypeString().equals("Ocean")) {
+    public Player getPlayerInTurn() {
+        return currentPlayer;
+    }
+
+    public Player getWinner() {
+        if (gameAge == -3000) {
+            return Player.RED;
+        } else {
+            return null;
+        }
+    }
+
+    public int getAge() {
+        return gameAge;
+    }
+
+    public boolean moveUnit(Position from, Position to) {
+        Tile destinationTile = world[to.getRow()][to.getColumn()];
+        String type = destinationTile.getTypeString();
+
+        if (type.equals(GameConstants.MOUNTAINS) || type.equals(GameConstants.OCEANS)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public void endOfTurn() {}
+    public void endOfTurn() {
+        // Decide player turn
+        if (getPlayerInTurn().equals(Player.RED)) {
+            currentPlayer = Player.BLUE;
+        } else if (getPlayerInTurn().equals(Player.BLUE)) {
+            currentPlayer = Player.RED;
+        }
+
+        // Advance game age
+        gameAge += 100;
+    }
+
     public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
     public void changeProductionInCityAt( Position p, String unitType ) {}
     public void performUnitActionAt( Position p ) {}

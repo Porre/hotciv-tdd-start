@@ -2,6 +2,7 @@ package hotciv.standard;
 
 import hotciv.framework.City;
 import hotciv.framework.Player;
+import hotciv.framework.Position;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,9 +13,14 @@ import hotciv.framework.Player;
  */
 public class CityImpl implements City {
 
+    private Player owner;
+
+    public CityImpl(Player player) {
+        owner = player;
+    }
+
     public Player getOwner() {
-        Player player = Player.RED;
-        return player;
+        return owner;
     }
 
     public int getSize() {
