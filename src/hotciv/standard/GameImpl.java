@@ -2,7 +2,7 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /** Skeleton implementation of HotCiv.
  
@@ -24,13 +24,15 @@ import java.util.ArrayList;
 public class GameImpl implements Game {
 
     private Tile[][] world;
-    private ArrayList<CityPair> cities;
+    private HashMap<Position, City> cities;
+    private HashMap<Position, Unit> units;
     private Player currentPlayer;
     private int gameAge;
 
     public GameImpl() {
-        // Initialize arraylist
-        cities = new ArrayList<CityPair>();
+        // Initialize HashMaps
+        cities = new HashMap<Position, City>();
+        units = new HashMap<Position, Unit>();
 
         // Game starts in 4000 BC
         gameAge = -4000;
@@ -39,10 +41,13 @@ public class GameImpl implements Game {
         currentPlayer = Player.RED;
 
         // Red city in (1,1), blue city in (4,1)
-        City blueCity = new CityImpl(Player.BLUE);
-        City redCity = new CityImpl(Player.RED);
-        cities.add(new CityPair(new Position(1,1), redCity));
-        cities.add(new CityPair(new Position(4,1), blueCity));
+        cities.put(new Position(1,1), new CityImpl(Player.RED));
+        cities.put(new Position(4,1), new CityImpl(Player.BLUE));
+
+        // Red archer at (2,0), blue legion at (3,2) and red settler at (4,3)
+        units.put(new Position(2,0), new UnitImpl(Player.RED, GameConstants.ARCHER));
+        units.put(new Position(3,2), new UnitImpl(Player.BLUE, GameConstants.LEGION));
+        units.put(new Position(4,3), new UnitImpl(Player.RED, GameConstants.SETTLER));
 
         // 16x16 array of tiles (the world)
         world = new Tile[16][16];
@@ -63,15 +68,12 @@ public class GameImpl implements Game {
         return world[p.getRow()][p.getColumn()];
     }
 
-    public Unit getUnitAt( Position p ) { return null; }
+    public Unit getUnitAt(Position p) {
+        return units.get(p);
+    }
 
     public City getCityAt(Position p) {
-        for (int i = 0; i < cities.size(); i++) {
-            if (cities.get(i).getPosition().equals(p)) {
-                return cities.get(i).getCity();
-            }
-        }
-        return null;
+        return cities.get(p);
     }
 
     public Player getPlayerInTurn() {
@@ -93,10 +95,16 @@ public class GameImpl implements Game {
     public boolean moveUnit(Position from, Position to) {
         Tile destinationTile = world[to.getRow()][to.getColumn()];
         String type = destinationTile.getTypeString();
+        Unit unit = getUnitAt(from);
 
         if (type.equals(GameConstants.MOUNTAINS) || type.equals(GameConstants.OCEANS)) {
             return false;
+        } else if (getUnitAt(to) != null) {
+            return false;
         } else {
+            // Valid move, remove unit from current position and move to next
+            units.remove(from);
+            units.put(to, unit);
             return true;
         }
     }

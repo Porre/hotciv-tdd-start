@@ -77,8 +77,11 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void unitsCanMoveFromPlainsToPlains() {
-        assertTrue("Unit can move from PLAINS to PLAINS", game.moveUnit(new Position(10, 10), new Position(10,11)));
+    public void unitsAreMovedAfterAValidMove() {
+        Unit u = game.getUnitAt(new Position(2,0));
+        assertTrue("Unit can move from PLAINS to PLAINS", game.moveUnit(new Position(2, 0), new Position(3,0)));
+        assertEquals("There should be no unit at (2,0) after the move", null, game.getUnitAt(new Position(2,0)));
+        assertEquals("There should be a unit at (3,0) after the move", u, game.getUnitAt(new Position(3,0)));
     }
 
     @Test
@@ -105,9 +108,6 @@ public class TestAlphaCiv {
         int currentAge = game.getAge();
         game.endOfTurn();
         assertEquals("A round should advance game age by 100 years", currentAge + 100, game.getAge());
-        game.endOfTurn();
-        game.endOfTurn();
-        assertEquals("Two more rounds should advance game age by 200 years", currentAge + 300, game.getAge());
     }
 
     @Test
@@ -116,5 +116,38 @@ public class TestAlphaCiv {
             game.endOfTurn();
         }
         assertEquals("Red should win game in year 3000 BC", Player.RED, game.getWinner());
+    }
+
+    @Test
+    public void redHastArcherAt2_0() {
+        Unit u = game.getUnitAt(new Position(2,0));
+        String type = u.getTypeString();
+        Player owner = u.getOwner();
+        assertEquals("There should be an ARCHER at (2,0)", GameConstants.ARCHER, type);
+        assertEquals("RED should have an ARCHER at (2,0)", Player.RED, owner);
+    }
+
+    @Test
+    public void redHasSettlerAt4_3() {
+        Unit u = game.getUnitAt(new Position(4,3));
+        String type = u.getTypeString();
+        Player owner = u.getOwner();
+        assertEquals("There should be a SETTLER at (4,3)", GameConstants.SETTLER, type);
+        assertEquals("RED should have an SETTLER at (4,3)", Player.RED, owner);
+    }
+
+    @Test
+    public void blueHasLegionAt3_2() {
+        Unit u = game.getUnitAt(new Position(3,2));
+        String type = u.getTypeString();
+        Player owner = u.getOwner();
+        assertEquals("There should be a LEGION at (4,3)", GameConstants.LEGION, type);
+        assertEquals("BLUE should have an LEGION at (4,3)", Player.BLUE, owner);
+    }
+
+    @Test
+    public void cannotMoveUnitToAnOccupiedTile() {
+        assertFalse("Unit cannot move to a tile already occupied by a unit",
+                game.moveUnit(new Position(2,0), new Position(4,3)));
     }
 }
