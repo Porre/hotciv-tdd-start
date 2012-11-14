@@ -3,6 +3,8 @@ package hotciv.standard;
 import hotciv.framework.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /** Skeleton implementation of HotCiv.
  
@@ -133,6 +135,7 @@ public class GameImpl implements Game {
             // Advance game age only when it is red players turn again
             gameAge += 100;
         }
+        handleUnitCreation(currentPlayer);
     }
 
     public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
@@ -143,4 +146,25 @@ public class GameImpl implements Game {
     }
 
     public void performUnitActionAt( Position p ) {}
+
+    private void handleUnitCreation(Player player) {
+        // Handle unit production for all cities owner by 'player'
+        Set keys = cities.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            Position position = (Position) i.next();
+            CityImpl city = (CityImpl) cities.get(position);
+            String unitType = city.getProduction();
+
+            // Make sure city is owned by the player and that a production unit has been chosen
+            if (city.getOwner().equals(player) && unitType != null) {
+                if (unitType.equals(GameConstants.ARCHER) && city.getProductionTotal() >= 10) {
+                    units.put(position, new UnitImpl(player, GameConstants.ARCHER));
+                } else if (unitType.equals(GameConstants.LEGION) && city.getProductionTotal() >= 15) {
+                    units.put(position, new UnitImpl(player, GameConstants.LEGION));
+                } else if (unitType.equals(GameConstants.SETTLER) && city.getProductionTotal() >= 30) {
+                    units.put(position, new UnitImpl(player, GameConstants.SETTLER));
+                }
+            }
+        }
+    }
 }

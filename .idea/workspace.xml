@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53b12c46-ee25-4e99-8a7d-750a3f8172f1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hotciv-tdd-start.iml" afterPath="$PROJECT_DIR$/Hotciv-tdd-start.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/CityImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/CityImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" />
@@ -70,7 +72,7 @@
       <file leaf-file-name="UnitImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="78" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+            <state line="16" column="51" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,16 +81,16 @@
       <file leaf-file-name="TestAlphaCiv.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="234" column="0" selection-start="8685" selection-end="8685" vertical-scroll-proportion="0.8241379">
+            <state line="234" column="38" selection-start="8701" selection-end="8701" vertical-scroll-proportion="0.2685026">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/framework/Game.java">
+      <file leaf-file-name="CityImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hotciv/standard/CityImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="103" selection-start="3038" selection-end="3038" vertical-scroll-proportion="0.0">
+            <state line="39" column="50" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,8 +99,9 @@
       <file leaf-file-name="GameImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="14" selection-start="3997" selection-end="3997" vertical-scroll-proportion="0.0">
+            <state line="168" column="5" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.0">
               <folding>
+                <element signature="method#GameImpl#0;class#GameImpl#0" expanded="false" />
                 <element signature="method#getTileAt#0;class#GameImpl#0" expanded="false" />
                 <element signature="method#getUnitAt#0;class#GameImpl#0" expanded="false" />
                 <element signature="method#getCityAt#0;class#GameImpl#0" expanded="false" />
@@ -106,25 +109,9 @@
                 <element signature="method#getWinner#0;class#GameImpl#0" expanded="false" />
                 <element signature="method#getAge#0;class#GameImpl#0" expanded="false" />
                 <element signature="method#moveUnit#0;class#GameImpl#0" expanded="false" />
+                <element signature="method#endOfTurn#0;class#GameImpl#0" expanded="false" />
+                <element signature="method#changeProductionInCityAt#0;class#GameImpl#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CityImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/standard/CityImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="30" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="City.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/framework/City.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -204,6 +191,20 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HotCiv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hotciv-tdd-start" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,20 +297,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HotCiv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hotciv-tdd-start" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -325,16 +312,16 @@
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="hotciv" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="hotciv" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="JUnit.TestAlphaCiv">
     <configuration default="false" name="TestAlphaCiv" type="JUnit" factoryName="JUnit" temporary="true">
@@ -382,24 +369,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -425,6 +394,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -548,8 +535,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39971244" sideWeight="0.6703911" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1394976" sideWeight="0.67745537" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32254463" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1394976" sideWeight="0.6785714" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32142857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -649,19 +636,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="78" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+        <state line="16" column="51" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="103" selection-start="3038" selection-end="3038" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/City.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/framework/GameConstants.java">
@@ -669,17 +646,32 @@
         <state line="21" column="13" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/City.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.18072289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="16" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.3321859">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/standard/CityImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="30" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
+        <state line="39" column="50" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="14" selection-start="3997" selection-end="3997" vertical-scroll-proportion="0.0">
+        <state line="168" column="5" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.0">
           <folding>
+            <element signature="method#GameImpl#0;class#GameImpl#0" expanded="false" />
             <element signature="method#getTileAt#0;class#GameImpl#0" expanded="false" />
             <element signature="method#getUnitAt#0;class#GameImpl#0" expanded="false" />
             <element signature="method#getCityAt#0;class#GameImpl#0" expanded="false" />
@@ -687,13 +679,15 @@
             <element signature="method#getWinner#0;class#GameImpl#0" expanded="false" />
             <element signature="method#getAge#0;class#GameImpl#0" expanded="false" />
             <element signature="method#moveUnit#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#endOfTurn#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#changeProductionInCityAt#0;class#GameImpl#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="234" column="0" selection-start="8685" selection-end="8685" vertical-scroll-proportion="0.8241379">
+        <state line="234" column="38" selection-start="8701" selection-end="8701" vertical-scroll-proportion="0.2685026">
           <folding />
         </state>
       </provider>
@@ -738,7 +732,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -3,6 +3,9 @@ package hotciv.standard;
 import hotciv.framework.*;
 
 import org.junit.*;
+
+import java.security.PublicKey;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -231,5 +234,21 @@ public class TestAlphaCiv {
             game.endOfTurn();
             accumulatedProduction += 6;
         }
+    }
+
+    @Test
+    public void cityProducesSettlerAndPlacesItOnTheCity() {
+        Position redPosition = new Position(1,1);
+        CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
+        redCity.setProduction(GameConstants.SETTLER);
+        int total = redCity.getProductionTotal();
+
+        while (total < 30) {
+            game.endOfTurn();
+            total = redCity.getProductionTotal();
+        }
+
+        assertEquals("There should be a SETTLER on the city at (1,1)",
+                GameConstants.SETTLER, game.getUnitAt(redPosition).getTypeString());
     }
 }

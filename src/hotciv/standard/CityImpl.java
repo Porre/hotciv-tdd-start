@@ -51,5 +51,4 @@ public class CityImpl implements City {
     public int getProductionTotal() {
         return productionTotal;
     }
-
 }
