@@ -121,12 +121,18 @@ public class GameImpl implements Game {
         // Decide player turn
         if (getPlayerInTurn().equals(Player.RED)) {
             currentPlayer = Player.BLUE;
+            if (gameAge != -4000) {
+                CityImpl blueCity = (CityImpl) cities.get(new Position(4,1));
+                blueCity.accumulateTotalProductionPoints();
+            }
         } else if (getPlayerInTurn().equals(Player.BLUE)) {
             currentPlayer = Player.RED;
-        }
+            CityImpl redCity = (CityImpl) cities.get(new Position(1,1));
+            redCity.accumulateTotalProductionPoints();
 
-        // Advance game age
-        gameAge += 100;
+            // Advance game age only when it is red players turn again
+            gameAge += 100;
+        }
     }
 
     public void changeWorkForceFocusInCityAt( Position p, String balance ) {}

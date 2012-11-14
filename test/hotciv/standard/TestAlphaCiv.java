@@ -108,6 +108,7 @@ public class TestAlphaCiv {
     public void aRoundAdvancesGameBy100Years() {
         int currentAge = game.getAge();
         game.endOfTurn();
+        game.endOfTurn();
         assertEquals("A round should advance game age by 100 years", currentAge + 100, game.getAge());
     }
 
@@ -200,20 +201,35 @@ public class TestAlphaCiv {
 
     @Test
     public void citiesShouldHaveProductionSix() {
-        CityImpl city = new CityImpl(Player.RED);
-        assertEquals("Cities should start with 0 production points", 0, city.getTotalProductionPoints());
+        Position redPos = new Position(1,1);
+        Position bluePos = new Position(4,1);
+        CityImpl redCity = (CityImpl) game.getCityAt(redPos);
+        CityImpl blueCity = (CityImpl) game.getCityAt(bluePos);
+
+        assertEquals("Red city should start with 0 production points", 0, redCity.getProductionTotal());
         game.endOfTurn();
-        assertEquals("Cities should produce 6 production points per round", 6, city.getTotalProductionPoints() );
+        assertEquals("Blue city should start with 0 production points", 0, blueCity.getProductionTotal());
+        game.endOfTurn();
+        assertEquals("Red city should produce 6 production points per round", 6, redCity.getProductionTotal());
+        game.endOfTurn();
+        assertEquals("Blue city should produce 6 production points per round", 6, blueCity.getProductionTotal());
     }
 
     @Test
     public void citiesShouldAccumulateProduction() {
-        Position cityPosition = new Position(1,1);
-        City city = game.getCityAt(cityPosition);
+        Position redPos = new Position(1,1);
+        Position bluePos = new Position(4,1);
+        CityImpl redCity = (CityImpl) game.getCityAt(redPos);
+        CityImpl blueCity = (CityImpl) game.getCityAt(bluePos);
+
+        int accumulatedProduction = 0;
 
         while(game.getAge() != -3000) {
+            assertEquals("Red city should accumulate production", accumulatedProduction, redCity.getProductionTotal());
             game.endOfTurn();
-
+            assertEquals("Blue city should accumulate production", accumulatedProduction, blueCity.getProductionTotal());
+            game.endOfTurn();
+            accumulatedProduction += 6;
         }
     }
 }

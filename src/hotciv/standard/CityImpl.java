@@ -16,9 +16,12 @@ public class CityImpl implements City {
 
     private Player owner;
     private String production;
+    private int productionPerTurn = 6;
+    private int productionTotal;
 
     public CityImpl(Player player) {
         owner = player;
+        productionTotal = 0;
     }
 
     public Player getOwner() {
@@ -41,8 +44,12 @@ public class CityImpl implements City {
         return GameConstants.productionFocus;
     }
 
-    public int getTotalProductionPoints() {
-        return 0;
+    public void accumulateTotalProductionPoints() {
+        productionTotal += productionPerTurn;
+    }
+
+    public int getProductionTotal() {
+        return productionTotal;
     }
 
 }
