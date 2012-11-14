@@ -1,6 +1,7 @@
 package hotciv.standard;
 
 import hotciv.framework.City;
+import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
 
@@ -14,6 +15,7 @@ import hotciv.framework.Position;
 public class CityImpl implements City {
 
     private Player owner;
+    private String production;
 
     public CityImpl(Player player) {
         owner = player;
@@ -24,14 +26,23 @@ public class CityImpl implements City {
     }
 
     public int getSize() {
-        return 0;
+        return 1;
     }
 
     public String getProduction() {
-        return null;
+        return production;
+    }
+
+    public void setProduction(String unitType) {
+        production = unitType;
     }
 
     public String getWorkforceFocus() {
-        return null;
+        return GameConstants.productionFocus;
     }
+
+    public int getTotalProductionPoints() {
+        return 0;
+    }
+
 }

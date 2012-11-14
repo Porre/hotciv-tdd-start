@@ -4,6 +4,7 @@ import hotciv.framework.*;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /** Skeleton class for AlphaCiv test cases
 
@@ -119,7 +120,7 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void redHastArcherAt2_0() {
+    public void redHasArcherAt2_0() {
         Unit u = game.getUnitAt(new Position(2,0));
         String type = u.getTypeString();
         Player owner = u.getOwner();
@@ -149,5 +150,70 @@ public class TestAlphaCiv {
     public void cannotMoveUnitToAnOccupiedTile() {
         assertFalse("Unit cannot move to a tile already occupied by a unit",
                 game.moveUnit(new Position(2,0), new Position(4,3)));
+    }
+
+    @Test
+    public void attackerAlwaysWin() {
+        assertTrue("Blue should be able to move to red position",game.moveUnit(new Position(3,2), new Position(2,0)));
+        assertEquals("Blue should win",Player.BLUE,game.getUnitAt(new Position(2,0)).getOwner());
+        assertEquals("Blue should not dublicate",null,game.getUnitAt(new Position(3,2)));
+    }
+
+    @Test
+    public void citiesShouldNotGrow() {
+        City city = game.getCityAt(new Position(1,1));
+        int before = city.getSize();
+        int after;
+
+        assertEquals("Population should be one", 1, before);
+
+        while(game.getAge() != -3000) {
+            game.endOfTurn();
+            after = city.getSize();
+            assertEquals("Populataion should be constant", before, after);
+        }
+    }
+
+    @Test
+    public void playersShouldBeAbleToCreateArchers() {
+        Position cityPosition = new Position(1,1);
+        City city = game.getCityAt(cityPosition);
+        game.changeProductionInCityAt(cityPosition, GameConstants.ARCHER);
+        assertEquals("City should produce archer", GameConstants.ARCHER, city.getProduction());
+    }
+
+    @Test
+    public void playersShouldBeAbleToCreateLegion() {
+        Position cityPosition = new Position(1,1);
+        City city = game.getCityAt(cityPosition);
+        game.changeProductionInCityAt(cityPosition, GameConstants.LEGION);
+        assertEquals("City should produce legion", GameConstants.LEGION, city.getProduction());
+    }
+
+    @Test
+    public void playersShouldBeAbleToCreateSettler() {
+        Position cityPosition = new Position(1,1);
+        City city = game.getCityAt(cityPosition);
+        game.changeProductionInCityAt(cityPosition, GameConstants.SETTLER);
+        assertEquals("City should produce legion", GameConstants.SETTLER, city.getProduction());
+    }
+
+    @Test
+    public void citiesShouldHaveProductionSix() {
+        CityImpl city = new CityImpl(Player.RED);
+        assertEquals("Cities should start with 0 production points", 0, city.getTotalProductionPoints());
+        game.endOfTurn();
+        assertEquals("Cities should produce 6 production points per round", 6, city.getTotalProductionPoints() );
+    }
+
+    @Test
+    public void citiesShouldAccumulateProduction() {
+        Position cityPosition = new Position(1,1);
+        City city = game.getCityAt(cityPosition);
+
+        while(game.getAge() != -3000) {
+            game.endOfTurn();
+
+        }
     }
 }

@@ -50,7 +50,7 @@ public class GameImpl implements Game {
         units.put(new Position(4,3), new UnitImpl(Player.RED, GameConstants.SETTLER));
 
         // 16x16 array of tiles (the world)
-        world = new Tile[16][16];
+        world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
 
         // Everything is plains except (1,0), (0,1), (2,2)
         for (int i = 0; i < 16; i++) {
@@ -95,16 +95,24 @@ public class GameImpl implements Game {
     public boolean moveUnit(Position from, Position to) {
         Tile destinationTile = world[to.getRow()][to.getColumn()];
         String type = destinationTile.getTypeString();
-        Unit unit = getUnitAt(from);
+        Unit unitFrom = getUnitAt(from);
+        Unit unitTo = getUnitAt(to);
 
         if (type.equals(GameConstants.MOUNTAINS) || type.equals(GameConstants.OCEANS)) {
             return false;
-        } else if (getUnitAt(to) != null) {
-            return false;
+        } else if (unitTo != null) {
+             if (unitFrom.getOwner().equals(unitTo.getOwner())) {
+                 return false;
+             } else {
+                 units.remove(to);
+                 units.remove(from);
+                 units.put(to, unitFrom);
+                 return true;
+             }
         } else {
             // Valid move, remove unit from current position and move to next
             units.remove(from);
-            units.put(to, unit);
+            units.put(to, unitFrom);
             return true;
         }
     }
@@ -122,6 +130,11 @@ public class GameImpl implements Game {
     }
 
     public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
-    public void changeProductionInCityAt( Position p, String unitType ) {}
+
+    public void changeProductionInCityAt( Position p, String unitType ) {
+        CityImpl c = (CityImpl) cities.get(p);
+        c.setProduction(unitType);
+    }
+
     public void performUnitActionAt( Position p ) {}
 }
