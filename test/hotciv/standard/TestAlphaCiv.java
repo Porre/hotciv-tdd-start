@@ -158,9 +158,9 @@ public class TestAlphaCiv {
 
     @Test
     public void attackerAlwaysWin() {
-        assertTrue("Blue should be able to move to red position",game.moveUnit(new Position(3,2), new Position(2,0)));
-        assertEquals("Blue should win",Player.BLUE,game.getUnitAt(new Position(2,0)).getOwner());
-        assertEquals("Blue should not dublicate",null,game.getUnitAt(new Position(3,2)));
+        assertTrue("Blue should be able to move to red position", game.moveUnit(new Position(3,2), new Position(2,0)));
+        assertEquals("Blue should win", Player.BLUE,game.getUnitAt(new Position(2,0)).getOwner());
+        assertEquals("Blue should not duplicate", null, game.getUnitAt(new Position(3,2)));
     }
 
     @Test
@@ -250,5 +250,69 @@ public class TestAlphaCiv {
 
         assertEquals("There should be a SETTLER on the city at (1,1)",
                 GameConstants.SETTLER, game.getUnitAt(redPosition).getTypeString());
+    }
+
+    @Test
+    public void cityProducesTwoArchersAndPlaceOneOnCityAndSecondNorthOfCity() {
+        Position redPosition = new Position(1,1);
+        CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
+        redCity.setProduction(GameConstants.ARCHER);
+        int total = redCity.getProductionTotal();
+
+        while (total < 30) {
+            game.endOfTurn();
+            total = redCity.getProductionTotal();
+        }
+
+        assertEquals("There should be an ARCHER on the city at (1,1)",
+                GameConstants.ARCHER, game.getUnitAt(redPosition).getTypeString());
+        assertEquals("There should be an ARCHER at (0,1)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(0,1)).getTypeString());
+    }
+
+    @Test
+    public void cityDeductsProductionTotalWhenUnitIsCreated() {
+        Position redPosition = new Position(1,1);
+        CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
+        redCity.setProduction(GameConstants.ARCHER);
+        int total = redCity.getProductionTotal();
+
+        // Simulate rounds to a total of 30 production ((10/2)*6=30)
+        for (int i = 0; i < 10; i++) {
+            game.endOfTurn();
+        }
+
+        assertEquals("City should have 0 production", 0, redCity.getProductionTotal());
+    }
+
+    @Test
+    public void cityProducesArchersAroundCityExceptFor3_2() {
+        Position bluePosition = new Position(4,1);
+        CityImpl blueCity = (CityImpl) game.getCityAt(bluePosition);
+        blueCity.setProduction(GameConstants.ARCHER);
+        int total = blueCity.getProductionTotal();
+
+        while (total < 13) {
+            game.endOfTurn();
+            total = blueCity.getProductionTotal();
+        }
+
+        assertEquals("There should be an ARCHER on the city at (4,1)",
+                GameConstants.ARCHER, game.getUnitAt(bluePosition).getTypeString());
+        assertEquals("There should be an ARCHER at (3,1)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(3,1)).getTypeString());
+        assertEquals("There should be an ARCHER at (4,2)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(4,2)).getTypeString());
+        assertEquals("There should be an ARCHER at (5,2)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(5,2)).getTypeString());
+        assertEquals("There should be an ARCHER at (5,1)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(5,1)).getTypeString());
+        assertEquals("There should be an ARCHER at (5,0)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(5,0)).getTypeString());
+        assertEquals("There should be an ARCHER at (4,0)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(4,0)).getTypeString());
+        assertEquals("There should be an ARCHER at (3,0)",
+                GameConstants.ARCHER, game.getUnitAt(new Position(3,0)).getTypeString());
+
     }
 }

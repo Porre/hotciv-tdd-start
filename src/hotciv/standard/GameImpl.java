@@ -2,9 +2,7 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /** Skeleton implementation of HotCiv.
  
@@ -55,8 +53,8 @@ public class GameImpl implements Game {
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
 
         // Everything is plains except (1,0), (0,1), (2,2)
-        for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 16; j++) {
+        for (int i = 0; i < GameConstants.WORLDSIZE; i++) {
+            for (int j = 0; j < GameConstants.WORLDSIZE; j++) {
                 world[i][j] = new TileImpl(new Position(i, j), GameConstants.PLAINS);
             }
         }
@@ -138,33 +136,89 @@ public class GameImpl implements Game {
         handleUnitCreation(currentPlayer);
     }
 
-    public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
+    public void changeWorkForceFocusInCityAt(Position p, String balance) {}
 
-    public void changeProductionInCityAt( Position p, String unitType ) {
+    public void changeProductionInCityAt(Position p, String unitType) {
         CityImpl c = (CityImpl) cities.get(p);
         c.setProduction(unitType);
     }
 
-    public void performUnitActionAt( Position p ) {}
+    public void performUnitActionAt(Position p) {}
 
     private void handleUnitCreation(Player player) {
         // Handle unit production for all cities owner by 'player'
-        Set keys = cities.keySet();
-        for (Iterator i = keys.iterator(); i.hasNext();) {
-            Position position = (Position) i.next();
-            CityImpl city = (CityImpl) cities.get(position);
+        for (Map.Entry entry : cities.entrySet()) {
+            Position position = (Position) entry.getKey();
+            CityImpl city = (CityImpl) entry.getValue();
             String unitType = city.getProduction();
 
-            // Make sure city is owned by the player and that a production unit has been chosen
+            // Create unit if owned by player and there is enough production
             if (city.getOwner().equals(player) && unitType != null) {
                 if (unitType.equals(GameConstants.ARCHER) && city.getProductionTotal() >= 10) {
-                    units.put(position, new UnitImpl(player, GameConstants.ARCHER));
+                    unitPlacement(position, new UnitImpl(player, GameConstants.ARCHER), (CityImpl) city);
                 } else if (unitType.equals(GameConstants.LEGION) && city.getProductionTotal() >= 15) {
-                    units.put(position, new UnitImpl(player, GameConstants.LEGION));
+                    unitPlacement(position, new UnitImpl(player, GameConstants.LEGION), (CityImpl)  city);
                 } else if (unitType.equals(GameConstants.SETTLER) && city.getProductionTotal() >= 30) {
-                    units.put(position, new UnitImpl(player, GameConstants.SETTLER));
+                    unitPlacement(position, new UnitImpl(player, GameConstants.SETTLER), (CityImpl)  city);
                 }
             }
+        }
+    }
+
+    private void unitPlacement(Position position, Unit unit, CityImpl city) {
+        int row = position.getRow();
+        int col = position.getColumn();
+
+        ArrayList<Position> positions = new ArrayList<Position>();
+
+        Position north = new Position(row - 1, col);
+        Position northEast = new Position(row - 1, col + 1);
+        Position east = new Position(row, col + 1);
+        Position southEast = new Position(row + 1, col + 1);
+        Position south = new Position(row + 1, col);
+        Position southWest = new Position(row + 1, col - 1);
+        Position west = new Position(row, col - 1);
+        Position northWest = new Position(row - 1, col - 1);
+
+        positions.add(north);
+        positions.add(northEast);
+        positions.add(east);
+        positions.add(southEast);
+        positions.add(south);
+        positions.add(southWest);
+        positions.add(west);
+        positions.add(northWest);
+
+        // If given position is free (the city position) just place unit there,
+        // otherwise check clockwise for a free position.
+
+        if (isValidPositionForUnit(position)) {
+            units.put(position, unit);
+        } else {
+            for (Position p : positions) {
+                if (isValidPositionForUnit(p)) {
+                    units.put(p, unit);
+                    city.deductProductionPoints(unit.getTypeString());
+                    break;
+                }
+            }
+        }
+    }
+
+    private boolean isValidPositionForUnit(Position position) {
+        int row = position.getRow();
+        int col = position.getColumn();
+
+        // Checks if position is within bounds (we will sometimes check for positions outside the grid)
+        // and also checks if a unit is a present.
+        if (row >= 0 && row < GameConstants.WORLDSIZE && col >= 0 && col < GameConstants.WORLDSIZE) {
+            if (getUnitAt(position) == null) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 }

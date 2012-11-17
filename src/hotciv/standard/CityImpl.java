@@ -48,6 +48,16 @@ public class CityImpl implements City {
         productionTotal += productionPerTurn;
     }
 
+    public void deductProductionPoints(String unitType) {
+        if (unitType.equals(GameConstants.ARCHER)) {
+            productionTotal -= 10;
+        } else if (unitType.equals(GameConstants.LEGION)) {
+            productionTotal -= 15;
+        } else if (unitType.equals(GameConstants.SETTLER)) {
+            productionTotal -= 30;
+        }
+    }
+
     public int getProductionTotal() {
         return productionTotal;
     }
