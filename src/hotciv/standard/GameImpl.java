@@ -27,15 +27,17 @@ public class GameImpl implements Game {
     private HashMap<Position, City> cities;
     private HashMap<Position, Unit> units;
     private Player currentPlayer;
-    private int gameAge;
+    private AgeStrategy ageStrategy;
+    private WinStrategy winStrategy;
 
-    public GameImpl() {
+    public GameImpl(AgeStrategy age, WinStrategy win) {
+        // Set strategies
+        ageStrategy = age;
+        winStrategy = win;
+
         // Initialize HashMaps
         cities = new HashMap<Position, City>();
         units = new HashMap<Position, Unit>();
-
-        // Game starts in 4000 BC
-        gameAge = -4000;
 
         // RED player starts
         currentPlayer = Player.RED;
@@ -64,7 +66,7 @@ public class GameImpl implements Game {
         world[2][2] = new TileImpl(new Position(1,0), GameConstants.MOUNTAINS);
      }
 
-    public Tile getTileAt( Position p ) {
+    public Tile getTileAt(Position p) {
         return world[p.getRow()][p.getColumn()];
     }
 
@@ -81,15 +83,11 @@ public class GameImpl implements Game {
     }
 
     public Player getWinner() {
-        if (gameAge == -3000) {
-            return Player.RED;
-        } else {
-            return null;
-        }
+        return winStrategy.getWinner(this);
     }
 
     public int getAge() {
-        return gameAge;
+        return ageStrategy.getAge();
     }
 
     public boolean moveUnit(Position from, Position to) {
@@ -97,22 +95,20 @@ public class GameImpl implements Game {
         String type = destinationTile.getTypeString();
         Unit unitFrom = getUnitAt(from);
         Unit unitTo = getUnitAt(to);
+        CityImpl city = (CityImpl) getCityAt(to);
 
         if (type.equals(GameConstants.MOUNTAINS) || type.equals(GameConstants.OCEANS)) {
             return false;
-        } else if (unitTo != null) {
-             if (unitFrom.getOwner().equals(unitTo.getOwner())) {
-                 return false;
-             } else {
-                 units.remove(to);
-                 units.remove(from);
-                 units.put(to, unitFrom);
-                 return true;
-             }
+        } else if (unitTo != null && unitFrom.getOwner().equals(unitTo.getOwner())) {
+            return false;
         } else {
-            // Valid move, remove unit from current position and move to next
+            units.remove(to);
             units.remove(from);
             units.put(to, unitFrom);
+
+            if (city != null) {
+                city.setOwner(getPlayerInTurn());
+            }
             return true;
         }
     }
@@ -121,7 +117,7 @@ public class GameImpl implements Game {
         // Decide player turn
         if (getPlayerInTurn().equals(Player.RED)) {
             currentPlayer = Player.BLUE;
-            if (gameAge != -4000) {
+            if (ageStrategy.getAge() != -4000) {
                 CityImpl blueCity = (CityImpl) cities.get(new Position(4,1));
                 blueCity.accumulateTotalProductionPoints();
             }
@@ -131,7 +127,7 @@ public class GameImpl implements Game {
             redCity.accumulateTotalProductionPoints();
 
             // Advance game age only when it is red players turn again
-            gameAge += 100;
+            ageStrategy.progressAge();
         }
         handleUnitCreation(currentPlayer);
     }
@@ -208,11 +204,13 @@ public class GameImpl implements Game {
     private boolean isValidPositionForUnit(Position position) {
         int row = position.getRow();
         int col = position.getColumn();
+        Tile tile = getTileAt(position);
+        String tileType = tile.getTypeString();
 
         // Checks if position is within bounds (we will sometimes check for positions outside the grid)
-        // and also checks if a unit is a present.
+        // and that it is not OCEANS or MOUNTAINS. If no unit is here we can safely place one.
         if (row >= 0 && row < GameConstants.WORLDSIZE && col >= 0 && col < GameConstants.WORLDSIZE) {
-            if (getUnitAt(position) == null) {
+            if (getUnitAt(position) == null && !tileType.equals(GameConstants.OCEANS) && !tileType.equals(GameConstants.MOUNTAINS)) {
                 return true;
             } else {
                 return false;
@@ -220,5 +218,16 @@ public class GameImpl implements Game {
         } else {
             return false;
         }
+    }
+
+    public ArrayList<City> getCities(Player player) {
+        ArrayList<City> list = new ArrayList<City>();
+        for (Map.Entry c : cities.entrySet()) {
+            City city = (City) c.getValue();
+            if (city.getOwner().equals(player)) {
+                list.add(city);
+            }
+        }
+        return list;
     }
 }

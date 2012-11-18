@@ -28,6 +28,10 @@ public class CityImpl implements City {
         return owner;
     }
 
+    public void setOwner(Player player) {
+        owner = player;
+    }
+
     public int getSize() {
         return 1;
     }

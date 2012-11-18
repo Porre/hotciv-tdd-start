@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
+import hotciv.variants.AlphaCivAge;
+import hotciv.variants.AlphaCivWin;
 import org.junit.*;
 
 import java.security.PublicKey;
@@ -30,7 +32,7 @@ public class TestAlphaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl();
+        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin());
     }
 
     @Test
