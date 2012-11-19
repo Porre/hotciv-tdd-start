@@ -29,11 +29,13 @@ public class GameImpl implements Game {
     private Player currentPlayer;
     private AgeStrategy ageStrategy;
     private WinStrategy winStrategy;
+    private UnitActionStrategy unitActionStrategy;
 
-    public GameImpl(AgeStrategy age, WinStrategy win) {
+    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action) {
         // Set strategies
         ageStrategy = age;
         winStrategy = win;
+        unitActionStrategy = action;
 
         // Initialize HashMaps
         cities = new HashMap<Position, City>();
@@ -101,6 +103,8 @@ public class GameImpl implements Game {
             return false;
         } else if (unitTo != null && unitFrom.getOwner().equals(unitTo.getOwner())) {
             return false;
+        } else if (((UnitImpl) unitFrom).isFortified())  {
+            return false;
         } else {
             units.remove(to);
             units.remove(from);
@@ -139,7 +143,9 @@ public class GameImpl implements Game {
         c.setProduction(unitType);
     }
 
-    public void performUnitActionAt(Position p) {}
+    public void performUnitActionAt(Position p) {
+        unitActionStrategy.unitAction(this, p);
+    }
 
     private void handleUnitCreation(Player player) {
         // Handle unit production for all cities owner by 'player'
@@ -229,5 +235,13 @@ public class GameImpl implements Game {
             }
         }
         return list;
+    }
+
+    public HashMap<Position, Unit> getUnits() {
+        return units;
+    }
+
+    public HashMap<Position, City> getCities() {
+        return cities;
     }
 }

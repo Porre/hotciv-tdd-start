@@ -1,6 +1,7 @@
 package hotciv.standard;
 
 import hotciv.framework.*;
+import hotciv.variants.AlphaCivAction;
 import hotciv.variants.AlphaCivAge;
 import hotciv.variants.BetaCivAge;
 import hotciv.variants.BetaCivWin;
@@ -14,7 +15,7 @@ public class TestBetaCiv {
     /** Fixture for betaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaCivAge(), new BetaCivWin());
+        game = new GameImpl(new BetaCivAge(), new BetaCivWin(), new AlphaCivAction());
     }
 
     @Test

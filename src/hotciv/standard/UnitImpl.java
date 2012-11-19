@@ -14,6 +14,8 @@ public class UnitImpl implements Unit {
 
     private Player owner;
     private String unitType;
+    private int defensiveStrength = 3;
+    private boolean fortified = false;
 
     public UnitImpl(Player player, String type) {
         owner = player;
@@ -33,10 +35,25 @@ public class UnitImpl implements Unit {
     }
 
     public int getDefensiveStrength() {
-        return 0;
+        return defensiveStrength;
     }
 
     public int getAttackingStrength() {
         return 0;
     }
+
+    public void fortify() {
+        defensiveStrength = 2*defensiveStrength;
+        fortified = true;
+    }
+
+    public void deFortify() {
+        defensiveStrength = defensiveStrength / 2;
+        fortified = false;
+    }
+
+    public boolean isFortified() {
+        return fortified;
+    }
+
 }
