@@ -5,13 +5,6 @@ import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
 
-/**
- * Created with IntelliJ IDEA.
- * User: OrhojLaptop
- * Date: 07-11-12
- * Time: 13:38
- * To change this template use File | Settings | File Templates.
- */
 public class CityImpl implements City {
 
     private Player owner;
