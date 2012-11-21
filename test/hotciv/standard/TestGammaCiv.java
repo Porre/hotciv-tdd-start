@@ -2,11 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
-import hotciv.variants.AlphaCivAction;
-import hotciv.variants.GammaCivAction;
+import hotciv.variants.*;
 import org.junit.*;
-import hotciv.variants.AlphaCivAge;
-import hotciv.variants.AlphaCivWin;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +20,7 @@ public class TestGammaCiv {
     /** Fixture for GammaCiv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new GammaCivAction());
+        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new GammaCivAction(), new AlphaCivWorldLayout());
     }
 
     @Test
@@ -48,7 +45,6 @@ public class TestGammaCiv {
         Unit archer = game.getUnitAt(archerPos);
         int basicDefence = archer.getDefensiveStrength();
         assertEquals("There should be a archer at (2,0)", GameConstants.ARCHER, archer.getTypeString());
-
 
         game.performUnitActionAt(archerPos);
         assertNotNull("There should be a archer at (2,0)", archer);

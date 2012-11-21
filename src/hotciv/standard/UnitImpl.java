@@ -43,7 +43,7 @@ public class UnitImpl implements Unit {
     }
 
     public void fortify() {
-        defensiveStrength = 2*defensiveStrength;
+        defensiveStrength = 2 * defensiveStrength;
         fortified = true;
     }
 

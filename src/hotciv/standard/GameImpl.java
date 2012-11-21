@@ -30,42 +30,23 @@ public class GameImpl implements Game {
     private AgeStrategy ageStrategy;
     private WinStrategy winStrategy;
     private UnitActionStrategy unitActionStrategy;
+    private WorldLayoutStrategy worldStrategy;
 
-    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action) {
-        // Set strategies
+    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action, WorldLayoutStrategy layout) {
         ageStrategy = age;
         winStrategy = win;
         unitActionStrategy = action;
+        worldStrategy = layout;
 
-        // Initialize HashMaps
-        cities = new HashMap<Position, City>();
-        units = new HashMap<Position, Unit>();
+        cities = layout.getCityLayout();
+        units = layout.getUnitLayout();
 
         // RED player starts
         currentPlayer = Player.RED;
 
-        // Red city in (1,1), blue city in (4,1)
-        cities.put(new Position(1,1), new CityImpl(Player.RED));
-        cities.put(new Position(4,1), new CityImpl(Player.BLUE));
-
-        // Red archer at (2,0), blue legion at (3,2) and red settler at (4,3)
-        units.put(new Position(2,0), new UnitImpl(Player.RED, GameConstants.ARCHER));
-        units.put(new Position(3,2), new UnitImpl(Player.BLUE, GameConstants.LEGION));
-        units.put(new Position(4,3), new UnitImpl(Player.RED, GameConstants.SETTLER));
-
         // 16x16 array of tiles (the world)
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
-
-        // Everything is plains except (1,0), (0,1), (2,2)
-        for (int i = 0; i < GameConstants.WORLDSIZE; i++) {
-            for (int j = 0; j < GameConstants.WORLDSIZE; j++) {
-                world[i][j] = new TileImpl(new Position(i, j), GameConstants.PLAINS);
-            }
-        }
-
-        world[1][0] = new TileImpl(new Position(1,0), GameConstants.OCEANS);
-        world[0][1] = new TileImpl(new Position(1,0), GameConstants.HILLS);
-        world[2][2] = new TileImpl(new Position(1,0), GameConstants.MOUNTAINS);
+        generateWorld();
      }
 
     public Tile getTileAt(Position p) {
@@ -194,11 +175,11 @@ public class GameImpl implements Game {
         // If given position is free (the city position) just place unit there,
         // otherwise check clockwise for a free position.
 
-        if (isValidPositionForUnit(position)) {
+        if (isValidPositionForNewUnit(position)) {
             units.put(position, unit);
         } else {
             for (Position p : positions) {
-                if (isValidPositionForUnit(p)) {
+                if (isValidPositionForNewUnit(p)) {
                     units.put(p, unit);
                     city.deductProductionPoints(unit.getTypeString());
                     break;
@@ -207,7 +188,7 @@ public class GameImpl implements Game {
         }
     }
 
-    private boolean isValidPositionForUnit(Position position) {
+    private boolean isValidPositionForNewUnit(Position position) {
         int row = position.getRow();
         int col = position.getColumn();
         Tile tile = getTileAt(position);
@@ -216,7 +197,8 @@ public class GameImpl implements Game {
         // Checks if position is within bounds (we will sometimes check for positions outside the grid)
         // and that it is not OCEANS or MOUNTAINS. If no unit is here we can safely place one.
         if (row >= 0 && row < GameConstants.WORLDSIZE && col >= 0 && col < GameConstants.WORLDSIZE) {
-            if (getUnitAt(position) == null && !tileType.equals(GameConstants.OCEANS) && !tileType.equals(GameConstants.MOUNTAINS)) {
+            if (getUnitAt(position) == null && !tileType.equals(GameConstants.OCEANS)
+                    && !tileType.equals(GameConstants.MOUNTAINS)) {
                 return true;
             } else {
                 return false;
@@ -226,7 +208,30 @@ public class GameImpl implements Game {
         }
     }
 
-    public ArrayList<City> getCities(Player player) {
+    private void generateWorld() {
+        String line;
+        for (int i = 0; i < GameConstants.WORLDSIZE; i++) {
+            line = worldStrategy.getWorldLayout()[i];
+            for (int j = 0; j < GameConstants.WORLDSIZE; j++) {
+                char tileChar = line.charAt(j);
+                String type = "error";
+                if (tileChar == '.') {
+                    type = GameConstants.OCEANS;
+                } else if (tileChar == 'o') {
+                    type = GameConstants.PLAINS;
+                } else if (tileChar == 'M') {
+                    type = GameConstants.MOUNTAINS;
+                } else if (tileChar == 'f') {
+                    type = GameConstants.FOREST;
+                } else if (tileChar == 'h') {
+                    type = GameConstants.HILLS;
+                }
+                world[i][j] = new TileImpl(new Position(i, j), type);
+            }
+        }
+    }
+
+    public ArrayList<City> getCitiesOwnedByPlayer(Player player) {
         ArrayList<City> list = new ArrayList<City>();
         for (Map.Entry c : cities.entrySet()) {
             City city = (City) c.getValue();

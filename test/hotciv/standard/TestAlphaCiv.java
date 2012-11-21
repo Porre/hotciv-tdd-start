@@ -5,6 +5,7 @@ import hotciv.framework.*;
 import hotciv.variants.AlphaCivAction;
 import hotciv.variants.AlphaCivAge;
 import hotciv.variants.AlphaCivWin;
+import hotciv.variants.AlphaCivWorldLayout;
 import org.junit.*;
 
 import java.security.PublicKey;
@@ -33,12 +34,12 @@ public class TestAlphaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction());
+        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout());
     }
 
     @Test
     public void shouldHaveRedCityAt1_1() {
-        City c = game.getCityAt(new Position(1,1));
+        City c = game.getCityAt(new Position(1, 1));
         assertNotNull("There should be a city at (1,1)", c);
         Player p = c.getOwner();
         assertEquals("City at (1,1) should be owned by red", Player.RED, p);
@@ -46,7 +47,7 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldHaveBlueCityAt4_1() {
-        City c = game.getCityAt(new Position(4,1));
+        City c = game.getCityAt(new Position(4, 1));
         assertNotNull("There should be a city at (4,1)", c);
         Player p = c.getOwner();
         assertEquals("City at (4,1) should be owned by blue", Player.BLUE, p);
@@ -54,21 +55,21 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldHaveOceanAt1_0() {
-        Tile t = game.getTileAt(new Position(1,0));
-        assertNotNull("There should be a tile at (1, 0)", t);
+        Tile t = game.getTileAt(new Position(1, 0));
+        assertNotNull("There should be a tile at (1,0)", t);
         assertEquals("The tile should be of type OCEAN", GameConstants.OCEANS, t.getTypeString());
     }
 
     @Test
     public void shouldHaveHillAt0_1() {
-        Tile t = game.getTileAt(new Position(0,1));
+        Tile t = game.getTileAt(new Position(0, 1));
         assertNotNull("There should be a tile at (0, 1)", t);
         assertEquals("The tile should be of type HILLS", GameConstants.HILLS, t.getTypeString());
     }
 
     @Test
     public void shouldHaveMountainAt2_2() {
-        Tile t = game.getTileAt(new Position(2,2));
+        Tile t = game.getTileAt(new Position(2, 2));
         assertNotNull("There should be a tile at (2, 2)", t);
         assertEquals("The tile should be of type MOUNTAINS", GameConstants.MOUNTAINS, t.getTypeString());
     }
@@ -85,10 +86,10 @@ public class TestAlphaCiv {
 
     @Test
     public void unitsAreMovedAfterAValidMove() {
-        Unit u = game.getUnitAt(new Position(2,0));
-        assertTrue("Unit can move from PLAINS to PLAINS", game.moveUnit(new Position(2, 0), new Position(3,0)));
-        assertEquals("There should be no unit at (2,0) after the move", null, game.getUnitAt(new Position(2,0)));
-        assertEquals("There should be a unit at (3,0) after the move", u, game.getUnitAt(new Position(3,0)));
+        Unit u = game.getUnitAt(new Position(2, 0));
+        assertTrue("Unit can move from PLAINS to PLAINS", game.moveUnit(new Position(2, 0), new Position(3, 0)));
+        assertEquals("There should be no unit at (2,0) after the move", null, game.getUnitAt(new Position(2, 0)));
+        assertEquals("There should be a unit at (3,0) after the move", u, game.getUnitAt(new Position(3, 0)));
     }
 
     @Test
@@ -128,7 +129,7 @@ public class TestAlphaCiv {
 
     @Test
     public void redHasArcherAt2_0() {
-        Unit u = game.getUnitAt(new Position(2,0));
+        Unit u = game.getUnitAt(new Position(2, 0));
         String type = u.getTypeString();
         Player owner = u.getOwner();
         assertEquals("There should be an ARCHER at (2,0)", GameConstants.ARCHER, type);
@@ -137,7 +138,7 @@ public class TestAlphaCiv {
 
     @Test
     public void redHasSettlerAt4_3() {
-        Unit u = game.getUnitAt(new Position(4,3));
+        Unit u = game.getUnitAt(new Position(4, 3));
         String type = u.getTypeString();
         Player owner = u.getOwner();
         assertEquals("There should be a SETTLER at (4,3)", GameConstants.SETTLER, type);
@@ -146,7 +147,7 @@ public class TestAlphaCiv {
 
     @Test
     public void blueHasLegionAt3_2() {
-        Unit u = game.getUnitAt(new Position(3,2));
+        Unit u = game.getUnitAt(new Position(3, 2));
         String type = u.getTypeString();
         Player owner = u.getOwner();
         assertEquals("There should be a LEGION at (4,3)", GameConstants.LEGION, type);
@@ -156,19 +157,19 @@ public class TestAlphaCiv {
     @Test
     public void cannotMoveUnitToAnOccupiedTile() {
         assertFalse("Unit cannot move to a tile already occupied by a unit",
-                game.moveUnit(new Position(2,0), new Position(4,3)));
+                game.moveUnit(new Position(2, 0), new Position(4, 3)));
     }
 
     @Test
     public void attackerAlwaysWin() {
-        assertTrue("Blue should be able to move to red position", game.moveUnit(new Position(3,2), new Position(2,0)));
-        assertEquals("Blue should win", Player.BLUE,game.getUnitAt(new Position(2,0)).getOwner());
-        assertEquals("Blue should not duplicate", null, game.getUnitAt(new Position(3,2)));
+        assertTrue("Blue should be able to move to red position", game.moveUnit(new Position(3, 2), new Position(2, 0)));
+        assertEquals("Blue should win", Player.BLUE,game.getUnitAt(new Position(2, 0)).getOwner());
+        assertEquals("Blue should not duplicate", null, game.getUnitAt(new Position(3, 2)));
     }
 
     @Test
     public void citiesShouldNotGrow() {
-        City city = game.getCityAt(new Position(1,1));
+        City city = game.getCityAt(new Position(1, 1));
         int before = city.getSize();
         int after;
 
@@ -177,13 +178,13 @@ public class TestAlphaCiv {
         while(game.getAge() != -3000) {
             game.endOfTurn();
             after = city.getSize();
-            assertEquals("Populataion should be constant", before, after);
+            assertEquals("Population should be constant", before, after);
         }
     }
 
     @Test
     public void playersShouldBeAbleToCreateArchers() {
-        Position cityPosition = new Position(1,1);
+        Position cityPosition = new Position(1, 1);
         City city = game.getCityAt(cityPosition);
         game.changeProductionInCityAt(cityPosition, GameConstants.ARCHER);
         assertEquals("City should produce archer", GameConstants.ARCHER, city.getProduction());
@@ -191,7 +192,7 @@ public class TestAlphaCiv {
 
     @Test
     public void playersShouldBeAbleToCreateLegion() {
-        Position cityPosition = new Position(1,1);
+        Position cityPosition = new Position(1, 1);
         City city = game.getCityAt(cityPosition);
         game.changeProductionInCityAt(cityPosition, GameConstants.LEGION);
         assertEquals("City should produce legion", GameConstants.LEGION, city.getProduction());
@@ -199,7 +200,7 @@ public class TestAlphaCiv {
 
     @Test
     public void playersShouldBeAbleToCreateSettler() {
-        Position cityPosition = new Position(1,1);
+        Position cityPosition = new Position(1, 1);
         City city = game.getCityAt(cityPosition);
         game.changeProductionInCityAt(cityPosition, GameConstants.SETTLER);
         assertEquals("City should produce legion", GameConstants.SETTLER, city.getProduction());
@@ -207,8 +208,8 @@ public class TestAlphaCiv {
 
     @Test
     public void citiesShouldHaveProductionSix() {
-        Position redPos = new Position(1,1);
-        Position bluePos = new Position(4,1);
+        Position redPos = new Position(1, 1);
+        Position bluePos = new Position(4, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPos);
         CityImpl blueCity = (CityImpl) game.getCityAt(bluePos);
 
@@ -223,8 +224,8 @@ public class TestAlphaCiv {
 
     @Test
     public void citiesShouldAccumulateProduction() {
-        Position redPos = new Position(1,1);
-        Position bluePos = new Position(4,1);
+        Position redPos = new Position(1, 1);
+        Position bluePos = new Position(4, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPos);
         CityImpl blueCity = (CityImpl) game.getCityAt(bluePos);
 
@@ -241,7 +242,7 @@ public class TestAlphaCiv {
 
     @Test
     public void cityProducesSettlerAndPlacesItOnTheCity() {
-        Position redPosition = new Position(1,1);
+        Position redPosition = new Position(1, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
         redCity.setProduction(GameConstants.SETTLER);
         int total = redCity.getProductionTotal();
@@ -257,7 +258,7 @@ public class TestAlphaCiv {
 
     @Test
     public void cityProducesTwoArchersAndPlaceOneOnCityAndSecondNorthOfCity() {
-        Position redPosition = new Position(1,1);
+        Position redPosition = new Position(1, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
         redCity.setProduction(GameConstants.ARCHER);
         int total = redCity.getProductionTotal();
@@ -270,12 +271,12 @@ public class TestAlphaCiv {
         assertEquals("There should be an ARCHER on the city at (1,1)",
                 GameConstants.ARCHER, game.getUnitAt(redPosition).getTypeString());
         assertEquals("There should be an ARCHER at (0,1)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(0,1)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(0, 1)).getTypeString());
     }
 
     @Test
     public void cityDeductsProductionTotalWhenUnitIsCreated() {
-        Position redPosition = new Position(1,1);
+        Position redPosition = new Position(1, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
         redCity.setProduction(GameConstants.ARCHER);
         int total = redCity.getProductionTotal();
@@ -290,7 +291,7 @@ public class TestAlphaCiv {
 
     @Test
     public void cityProducesArchersAroundCityExceptFor3_2() {
-        Position bluePosition = new Position(4,1);
+        Position bluePosition = new Position(4, 1);
         CityImpl blueCity = (CityImpl) game.getCityAt(bluePosition);
         blueCity.setProduction(GameConstants.ARCHER);
         int total = blueCity.getProductionTotal();
@@ -303,19 +304,19 @@ public class TestAlphaCiv {
         assertEquals("There should be an ARCHER on the city at (4,1)",
                 GameConstants.ARCHER, game.getUnitAt(bluePosition).getTypeString());
         assertEquals("There should be an ARCHER at (3,1)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(3,1)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(3, 1)).getTypeString());
         assertEquals("There should be an ARCHER at (4,2)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(4,2)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(4, 2)).getTypeString());
         assertEquals("There should be an ARCHER at (5,2)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(5,2)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(5, 2)).getTypeString());
         assertEquals("There should be an ARCHER at (5,1)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(5,1)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(5, 1)).getTypeString());
         assertEquals("There should be an ARCHER at (5,0)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(5,0)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(5, 0)).getTypeString());
         assertEquals("There should be an ARCHER at (4,0)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(4,0)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(4, 0)).getTypeString());
         assertEquals("There should be an ARCHER at (3,0)",
-                GameConstants.ARCHER, game.getUnitAt(new Position(3,0)).getTypeString());
+                GameConstants.ARCHER, game.getUnitAt(new Position(3, 0)).getTypeString());
 
     }
 }
