@@ -6,5 +6,7 @@ import hotciv.framework.UnitActionStrategy;
 
 public class AlphaCivAction implements UnitActionStrategy {
 
-    public void unitAction(Game game, Position pos) { }
+    public void unitAction(Game game, Position pos) {
+        // DOES NOTHING!
+    }
 }

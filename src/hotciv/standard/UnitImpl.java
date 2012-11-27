@@ -1,20 +1,13 @@
 package hotciv.standard;
 
+import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Unit;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Orhoj
- * Date: 13-11-12
- * Time: 20:19
- * To change this template use File | Settings | File Templates.
- */
 public class UnitImpl implements Unit {
 
     private Player owner;
     private String unitType;
-    private int defensiveStrength = 3;
     private boolean fortified = false;
 
     public UnitImpl(Player player, String type) {
@@ -35,20 +28,38 @@ public class UnitImpl implements Unit {
     }
 
     public int getDefensiveStrength() {
-        return defensiveStrength;
+        if (unitType.equals(GameConstants.ARCHER)) {
+            if (fortified) {
+                return 6;
+            } else {
+                return 3;
+            }
+        } else if (unitType.equals(GameConstants.LEGION)) {
+            return 2;
+        } else if (unitType.equals(GameConstants.SETTLER)) {
+            return 3;
+        } else {
+            return 0;
+        }
     }
 
     public int getAttackingStrength() {
-        return 0;
+        if (unitType.equals(GameConstants.ARCHER)) {
+            return 2;
+        } else if (unitType.equals(GameConstants.LEGION)) {
+            return 4;
+        } else if (unitType.equals(GameConstants.SETTLER)) {
+            return 0;
+        } else {
+            return 0;
+        }
     }
 
     public void fortify() {
-        defensiveStrength = 2 * defensiveStrength;
         fortified = true;
     }
 
     public void deFortify() {
-        defensiveStrength = defensiveStrength / 2;
         fortified = false;
     }
 

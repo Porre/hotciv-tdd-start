@@ -2,10 +2,7 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
-import hotciv.variants.AlphaCivAction;
-import hotciv.variants.AlphaCivAge;
-import hotciv.variants.AlphaCivWin;
-import hotciv.variants.AlphaCivWorldLayout;
+import hotciv.variants.*;
 import org.junit.*;
 
 import java.security.PublicKey;
@@ -34,7 +31,8 @@ public class TestAlphaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout());
+        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout(),
+                new AlphaCivBattle());
     }
 
     @Test
@@ -162,6 +160,7 @@ public class TestAlphaCiv {
 
     @Test
     public void attackerAlwaysWin() {
+        game.endOfTurn(); // Blue's turn
         assertTrue("Blue should be able to move to red position", game.moveUnit(new Position(3, 2), new Position(2, 0)));
         assertEquals("Blue should win", Player.BLUE,game.getUnitAt(new Position(2, 0)).getOwner());
         assertEquals("Blue should not duplicate", null, game.getUnitAt(new Position(3, 2)));
@@ -215,11 +214,11 @@ public class TestAlphaCiv {
 
         assertEquals("Red city should start with 0 production points", 0, redCity.getProductionTotal());
         game.endOfTurn();
-        assertEquals("Blue city should start with 0 production points", 0, blueCity.getProductionTotal());
+        assertEquals("Blue city should start with 6 production points", 6, blueCity.getProductionTotal());
         game.endOfTurn();
         assertEquals("Red city should produce 6 production points per round", 6, redCity.getProductionTotal());
         game.endOfTurn();
-        assertEquals("Blue city should produce 6 production points per round", 6, blueCity.getProductionTotal());
+        assertEquals("Blue city should produce 6 production points per round", 12, blueCity.getProductionTotal());
     }
 
     @Test
@@ -234,9 +233,9 @@ public class TestAlphaCiv {
         while(game.getAge() != -3000) {
             assertEquals("Red city should accumulate production", accumulatedProduction, redCity.getProductionTotal());
             game.endOfTurn();
+            accumulatedProduction += 6;
             assertEquals("Blue city should accumulate production", accumulatedProduction, blueCity.getProductionTotal());
             game.endOfTurn();
-            accumulatedProduction += 6;
         }
     }
 
@@ -245,11 +244,9 @@ public class TestAlphaCiv {
         Position redPosition = new Position(1, 1);
         CityImpl redCity = (CityImpl) game.getCityAt(redPosition);
         redCity.setProduction(GameConstants.SETTLER);
-        int total = redCity.getProductionTotal();
 
-        while (total < 30) {
+        for (int i = 0; i < 11; i++) {
             game.endOfTurn();
-            total = redCity.getProductionTotal();
         }
 
         assertEquals("There should be a SETTLER on the city at (1,1)",
@@ -263,9 +260,8 @@ public class TestAlphaCiv {
         redCity.setProduction(GameConstants.ARCHER);
         int total = redCity.getProductionTotal();
 
-        while (total < 30) {
+        for (int i = 0; i < 15; i++) {
             game.endOfTurn();
-            total = redCity.getProductionTotal();
         }
 
         assertEquals("There should be an ARCHER on the city at (1,1)",
@@ -294,11 +290,9 @@ public class TestAlphaCiv {
         Position bluePosition = new Position(4, 1);
         CityImpl blueCity = (CityImpl) game.getCityAt(bluePosition);
         blueCity.setProduction(GameConstants.ARCHER);
-        int total = blueCity.getProductionTotal();
 
-        while (total < 13) {
+        for (int i = 0; i < 40; i++) {
             game.endOfTurn();
-            total = blueCity.getProductionTotal();
         }
 
         assertEquals("There should be an ARCHER on the city at (4,1)",
@@ -318,5 +312,22 @@ public class TestAlphaCiv {
         assertEquals("There should be an ARCHER at (3,0)",
                 GameConstants.ARCHER, game.getUnitAt(new Position(3, 0)).getTypeString());
 
+    }
+
+    @Test
+    public void cityProducesArcherAtCityTileAndDeductsProduction() {
+        Position bluePosition = new Position(4, 1);
+        CityImpl blueCity = (CityImpl) game.getCityAt(bluePosition);
+        blueCity.setProduction(GameConstants.ARCHER);
+        int total = blueCity.getProductionTotal();
+
+        // Wait for 12 production
+        game.endOfTurn();
+        game.endOfTurn();
+        game.endOfTurn();
+
+        assertEquals("There should be an ARCHER on the city at (4,1)",
+                GameConstants.ARCHER, game.getUnitAt(bluePosition).getTypeString());
+        assertEquals("The city should have 2 production left", 2, blueCity.getProductionTotal());
     }
 }

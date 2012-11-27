@@ -2,13 +2,25 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/hotciv/framework/WorldLayoutStrategy.java" description="}" line="23" />
+    <bookmark url="file://$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java" line="24" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53b12c46-ee25-4e99-8a7d-750a3f8172f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/framework/UnitActionStrategy.java" afterPath="$PROJECT_DIR$/src/hotciv/framework/UnitActionStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/framework/WorldLayoutStrategy.java" afterPath="$PROJECT_DIR$/src/hotciv/framework/WorldLayoutStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/CityImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/CityImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/framework/BattleStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivBattle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivAction.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestBetaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestBetaCiv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestGammaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestGammaCiv.java" />
     </list>
     <ignored path="HotCiv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,10 +83,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameImpl.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
+      <file leaf-file-name="UnitImpl.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="18" selection-start="1739" selection-end="1739" vertical-scroll-proportion="0.5805515">
+            <state line="39" column="38" selection-start="928" selection-end="928" vertical-scroll-proportion="0.5483871">
               <folding />
             </state>
           </provider>
@@ -99,22 +111,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test/hotciv/standard/GammaCiv.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/variants/BetaCivWin.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/variants/GammaCivAction.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java" />
-        <option value="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/framework/BattleStratgey.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/framework/BattleStrategy.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/standard/Utility.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java" />
         <option value="$PROJECT_DIR$/test/hotciv/standard/TestBetaCiv.java" />
+        <option value="$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java" />
         <option value="$PROJECT_DIR$/test/hotciv/standard/TestGammaCiv.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/variants/GammaCivWorldLayout.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/variants/AlphaCivBattle.java" />
+        <option value="$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java" />
+        <option value="$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java" />
         <option value="$PROJECT_DIR$/src/hotciv/variants/AlphaCivAction.java" />
         <option value="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/variants/DeltaCivWorldLayout.java" />
-        <option value="$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/variants/AlphaCivWorldLayout.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/standard/CityImpl.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/framework/WorldLayoutStrategy.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/framework/UnitActionStrategy.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java" />
+        <option value="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" />
       </list>
     </option>
   </component>
@@ -124,8 +136,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -169,16 +181,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -283,6 +285,16 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -313,23 +325,95 @@
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="hotciv" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="hotciv.standard" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestAlphaCiv">
+  <component name="RunManager" selected="JUnit.TestZetaCiv">
+    <configuration default="false" name="TestDeltaCiv" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="Hotciv-tdd-start" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="hotciv.standard" />
+      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestDeltaCiv" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SoloTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="Hotciv-tdd-start" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="hotciv.standard" />
+      <option name="MAIN_CLASS_NAME" value="hotciv.standard.SoloTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestEpsilonCiv" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="Hotciv-tdd-start" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="hotciv.standard" />
+      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestEpsilonCiv" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="false" name="TestAlphaCiv" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="Hotciv-tdd-start" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -352,40 +436,12 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="TestAlphaCiv.redWinsIn3000BC" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="TestZetaCiv" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="Hotciv-tdd-start" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="hotciv.standard" />
-      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestAlphaCiv" />
-      <option name="METHOD_NAME" value="redWinsIn3000BC" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestBetaCiv" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="Hotciv-tdd-start" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="hotciv.standard" />
-      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestBetaCiv" />
+      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestZetaCiv" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -405,28 +461,6 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestDeltaCiv" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="Hotciv-tdd-start" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="hotciv.standard" />
-      <option name="MAIN_CLASS_NAME" value="hotciv.standard.TestDeltaCiv" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -450,6 +484,24 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -478,24 +530,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -569,12 +603,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.TestAlphaCiv" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestAlphaCiv.redWinsIn3000BC" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestBetaCiv" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestGammaCiv" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestDeltaCiv" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestGammaCiv" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestDeltaCiv" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SoloTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestEpsilonCiv" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestAlphaCiv" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.TestZetaCiv" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -629,27 +664,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24946082" sideWeight="0.6703911" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955357" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1394976" sideWeight="0.21763393" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1394976" sideWeight="0.21763393" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39971244" sideWeight="0.6703911" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2271747" sideWeight="0.67597765" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32402235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2180652" sideWeight="0.79129463" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20870535" sideWeight="0.9991653" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32681563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -726,100 +761,140 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestGammaCiv.java">
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="85" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/GammaCivAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="40" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.83588624" />
+        <state line="7" column="89" selection-start="176" selection-end="176" vertical-scroll-proportion="0.12762763">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/framework/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="21" selection-start="654" selection-end="654" vertical-scroll-proportion="0.36980307" />
+        <state line="94" column="14" selection-start="3707" selection-end="3707" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivAction.java">
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestBetaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivAge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="139" selection-end="139" vertical-scroll-proportion="0.1487965" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="0" selection-start="2965" selection-end="2965" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivWorldLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="76" selection-start="594" selection-end="594" vertical-scroll-proportion="0.5426696" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/standard/CityImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.07402032">
+        <state line="15" column="32" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="38" selection-start="600" selection-end="600" vertical-scroll-proportion="0.2467344">
+        <state line="16" column="38" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/DeltaCivWorldLayout.java">
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestGammaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="15" column="38" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivBattle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="60" selection-start="303" selection-end="303" vertical-scroll-proportion="0.3167702">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/UnitActionStrategy.java">
+    <entry file="file://$PROJECT_DIR$/src/hotciv/standard/Utility.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="70" selection-start="179" selection-end="179" vertical-scroll-proportion="0.14804064">
+        <state line="69" column="48" selection-start="2600" selection-end="2600" vertical-scroll-proportion="0.45645645">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/AgeStrategy.java">
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="44" selection-end="44" vertical-scroll-proportion="0.04934688">
+        <state line="19" column="1" selection-start="517" selection-end="517" vertical-scroll-proportion="0.484985">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="46" selection-start="1525" selection-end="1525" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/WinStrategy.java">
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="14" selection-start="130" selection-end="150" vertical-scroll-proportion="0.14804064">
+        <state line="9" column="24" selection-start="274" selection-end="274" vertical-scroll-proportion="0.18478261">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/WorldLayoutStrategy.java">
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestAlphaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="43" selection-start="576" selection-end="576" vertical-scroll-proportion="0.59216255">
+        <state line="174" column="57" selection-start="6175" selection-end="6175" vertical-scroll-proportion="4.2372375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="43" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.6480938">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="37" selection-start="641" selection-end="641" vertical-scroll-proportion="0.456621">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="62" selection-start="4118" selection-end="4118" vertical-scroll-proportion="1.9222873">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="18" selection-start="1739" selection-end="1739" vertical-scroll-proportion="0.5805515">
+        <state line="92" column="0" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.92521995">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#GameImpl#0" expanded="false" />
+            <element signature="method#GameImpl#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#getTileAt#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#getUnitAt#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#moveUnit#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#endOfTurn#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#changeProductionInCityAt#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#performUnitActionAt#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#handleUnitCreation#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#getValidUnitPositionsList#0;class#GameImpl#0" expanded="false" />
+            <element signature="e#6493#6503#0" expanded="true" />
+            <element signature="e#6557#6567#0" expanded="true" />
+            <element signature="method#isValidPositionForNewUnit#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#generateWorld#0;class#GameImpl#0" expanded="false" />
+            <element signature="method#getCitiesOwnedByPlayer#0;class#GameImpl#0" expanded="false" />
+            <element signature="e#9201#9207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/standard/UnitImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="38" selection-start="928" selection-end="928" vertical-scroll-proportion="0.5483871">
           <folding />
         </state>
       </provider>

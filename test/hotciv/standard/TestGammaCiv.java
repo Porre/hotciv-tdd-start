@@ -7,20 +7,13 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: Klaus Fyhn Jacobsen
- * Date: 19-11-12
- * Time: 18:33
- * To change this template use File | Settings | File Templates.
- */
 public class TestGammaCiv {
     private Game game;
     /** Fixture for GammaCiv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new GammaCivAction(), new AlphaCivWorldLayout());
+        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new GammaCivAction(), new AlphaCivWorldLayout(),
+                new EpsilonCivBattle());
     }
 
     @Test

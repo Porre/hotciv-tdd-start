@@ -31,18 +31,25 @@ public class GameImpl implements Game {
     private WinStrategy winStrategy;
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldStrategy;
+    private BattleStrategy battleStrategy;
+    private int redAttacksWon, blueAttacksWon;
+    private int roundNumber;
 
-    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action, WorldLayoutStrategy layout) {
+    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action, WorldLayoutStrategy layout,
+        BattleStrategy battle) {
         ageStrategy = age;
         winStrategy = win;
         unitActionStrategy = action;
         worldStrategy = layout;
+        battleStrategy = battle;
 
         cities = layout.getCityLayout();
         units = layout.getUnitLayout();
 
         // RED player starts
         currentPlayer = Player.RED;
+
+        roundNumber = 1;
 
         // 16x16 array of tiles (the world)
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
@@ -73,6 +80,16 @@ public class GameImpl implements Game {
         return ageStrategy.getAge();
     }
 
+    public int getAttacksWon(Player player) {
+        if (player.equals(Player.RED)) {
+            return redAttacksWon;
+        } else if (player.equals(Player.BLUE)) {
+            return blueAttacksWon;
+        } else {
+            return 0;
+        }
+    }
+
     public boolean moveUnit(Position from, Position to) {
         Tile destinationTile = world[to.getRow()][to.getColumn()];
         String type = destinationTile.getTypeString();
@@ -86,34 +103,49 @@ public class GameImpl implements Game {
             return false;
         } else if (((UnitImpl) unitFrom).isFortified())  {
             return false;
-        } else {
-            units.remove(to);
-            units.remove(from);
-            units.put(to, unitFrom);
-
-            if (city != null) {
-                city.setOwner(getPlayerInTurn());
+        } else if (!unitFrom.getOwner().equals(currentPlayer)) {
+            return false;
+        } else if (unitTo != null) {
+            if (battleStrategy.getBattleResult(this, from, to)) {
+                units.remove(to);
+                if (unitFrom.getOwner().equals(Player.RED)) {
+                    redAttacksWon++;
+                } else {
+                    blueAttacksWon++;
+                }
+            } else {
+                units.remove(from);
+                return true;
             }
-            return true;
         }
+
+        units.remove(from);
+        units.put(to, unitFrom);
+
+        if (city != null && city.getOwner() != unitFrom.getOwner()) {
+            city.setOwner(getPlayerInTurn());
+        }
+        return true;
     }
 
     public void endOfTurn() {
-        // Decide player turn
+        // Switch player turns and progress age
         if (getPlayerInTurn().equals(Player.RED)) {
             currentPlayer = Player.BLUE;
-            if (ageStrategy.getAge() != -4000) {
-                CityImpl blueCity = (CityImpl) cities.get(new Position(4,1));
-                blueCity.accumulateTotalProductionPoints();
-            }
         } else if (getPlayerInTurn().equals(Player.BLUE)) {
             currentPlayer = Player.RED;
-            CityImpl redCity = (CityImpl) cities.get(new Position(1,1));
-            redCity.accumulateTotalProductionPoints();
-
-            // Advance game age only when it is red players turn again
             ageStrategy.progressAge();
+            roundNumber++;
         }
+
+        // Accumulate production points for cities
+        ArrayList<City> cityList = getCitiesOwnedByPlayer(currentPlayer);
+        for (int i = 0; i < cityList.size(); i++) {
+            CityImpl city = (CityImpl) cityList.get(i);
+            city.accumulateTotalProductionPoints();
+        }
+
+        // Create new units and deduct production
         handleUnitCreation(currentPlayer);
     }
 
@@ -134,25 +166,30 @@ public class GameImpl implements Game {
             Position position = (Position) entry.getKey();
             CityImpl city = (CityImpl) entry.getValue();
             String unitType = city.getProduction();
+            ArrayList<Position> positions = getValidUnitPositionsList(position);
 
             // Create unit if owned by player and there is enough production
-            if (city.getOwner().equals(player) && unitType != null) {
+            if (city.getOwner().equals(player) && unitType != null && !positions.isEmpty()) {
                 if (unitType.equals(GameConstants.ARCHER) && city.getProductionTotal() >= 10) {
-                    unitPlacement(position, new UnitImpl(player, GameConstants.ARCHER), (CityImpl) city);
+                    units.put(positions.get(0), new UnitImpl(player, GameConstants.ARCHER));
+                    city.deductProductionPoints(unitType);
                 } else if (unitType.equals(GameConstants.LEGION) && city.getProductionTotal() >= 15) {
-                    unitPlacement(position, new UnitImpl(player, GameConstants.LEGION), (CityImpl)  city);
+                    units.put(positions.get(0), new UnitImpl(player, GameConstants.LEGION));
+                    city.deductProductionPoints(unitType);
                 } else if (unitType.equals(GameConstants.SETTLER) && city.getProductionTotal() >= 30) {
-                    unitPlacement(position, new UnitImpl(player, GameConstants.SETTLER), (CityImpl)  city);
+                    units.put(positions.get(0), new UnitImpl(player, GameConstants.SETTLER));
+                    city.deductProductionPoints(unitType);
                 }
             }
         }
     }
 
-    private void unitPlacement(Position position, Unit unit, CityImpl city) {
+    private ArrayList<Position> getValidUnitPositionsList(Position position) {
         int row = position.getRow();
         int col = position.getColumn();
 
         ArrayList<Position> positions = new ArrayList<Position>();
+        ArrayList<Position> result = new ArrayList<Position>();
 
         Position north = new Position(row - 1, col);
         Position northEast = new Position(row - 1, col + 1);
@@ -163,6 +200,7 @@ public class GameImpl implements Game {
         Position west = new Position(row, col - 1);
         Position northWest = new Position(row - 1, col - 1);
 
+        positions.add(position);
         positions.add(north);
         positions.add(northEast);
         positions.add(east);
@@ -172,33 +210,23 @@ public class GameImpl implements Game {
         positions.add(west);
         positions.add(northWest);
 
-        // If given position is free (the city position) just place unit there,
-        // otherwise check clockwise for a free position.
-
-        if (isValidPositionForNewUnit(position)) {
-            units.put(position, unit);
-        } else {
-            for (Position p : positions) {
-                if (isValidPositionForNewUnit(p)) {
-                    units.put(p, unit);
-                    city.deductProductionPoints(unit.getTypeString());
-                    break;
-                }
+        for (int i = 0; i < positions.size(); i++) {
+            if (isValidPositionForNewUnit(positions.get(i))) {
+                result.add(positions.get(i));
             }
         }
+        return result;
     }
 
-    private boolean isValidPositionForNewUnit(Position position) {
+    public boolean isValidPositionForNewUnit(Position position) {
         int row = position.getRow();
         int col = position.getColumn();
         Tile tile = getTileAt(position);
+        Unit unit = getUnitAt(position);
         String tileType = tile.getTypeString();
 
-        // Checks if position is within bounds (we will sometimes check for positions outside the grid)
-        // and that it is not OCEANS or MOUNTAINS. If no unit is here we can safely place one.
         if (row >= 0 && row < GameConstants.WORLDSIZE && col >= 0 && col < GameConstants.WORLDSIZE) {
-            if (getUnitAt(position) == null && !tileType.equals(GameConstants.OCEANS)
-                    && !tileType.equals(GameConstants.MOUNTAINS)) {
+            if (unit == null && !tileType.equals(GameConstants.OCEANS) && !tileType.equals(GameConstants.MOUNTAINS)) {
                 return true;
             } else {
                 return false;
@@ -248,5 +276,9 @@ public class GameImpl implements Game {
 
     public HashMap<Position, City> getCities() {
         return cities;
+    }
+
+    public int getRound() {
+        return roundNumber;
     }
 }
