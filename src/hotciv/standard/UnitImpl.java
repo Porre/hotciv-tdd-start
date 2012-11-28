@@ -9,10 +9,27 @@ public class UnitImpl implements Unit {
     private Player owner;
     private String unitType;
     private boolean fortified = false;
+    private int attackStrength;
+    private int defensiveStrength;
+
 
     public UnitImpl(Player player, String type) {
         owner = player;
         unitType = type;
+
+        if (unitType.equals(GameConstants.ARCHER)) {
+            defensiveStrength = 3;
+            attackStrength = 2;
+        } else if (unitType.equals(GameConstants.LEGION)) {
+            defensiveStrength = 2;
+            attackStrength = 4;
+        } else if (unitType.equals(GameConstants.SETTLER)) {
+            defensiveStrength = 3;
+            attackStrength = 0;
+        } else {
+            defensiveStrength = 0;
+        }
+
     }
 
     public String getTypeString() {
@@ -28,31 +45,15 @@ public class UnitImpl implements Unit {
     }
 
     public int getDefensiveStrength() {
-        if (unitType.equals(GameConstants.ARCHER)) {
-            if (fortified) {
-                return 6;
-            } else {
-                return 3;
-            }
-        } else if (unitType.equals(GameConstants.LEGION)) {
-            return 2;
-        } else if (unitType.equals(GameConstants.SETTLER)) {
-            return 3;
+        if (fortified) {
+            return defensiveStrength * 2;
         } else {
-            return 0;
+            return defensiveStrength;
         }
     }
 
     public int getAttackingStrength() {
-        if (unitType.equals(GameConstants.ARCHER)) {
-            return 2;
-        } else if (unitType.equals(GameConstants.LEGION)) {
-            return 4;
-        } else if (unitType.equals(GameConstants.SETTLER)) {
-            return 0;
-        } else {
-            return 0;
-        }
+        return attackStrength;
     }
 
     public void fortify() {
