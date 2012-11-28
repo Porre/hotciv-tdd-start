@@ -1,16 +1,22 @@
 package hotciv.variants;
 
-import hotciv.framework.BattleStrategy;
-import hotciv.framework.Game;
-import hotciv.framework.Position;
-import hotciv.framework.Unit;
+import hotciv.framework.*;
 import hotciv.standard.Utility;
 
 public class EpsilonCivBattle implements BattleStrategy {
 
-    public boolean getBattleResult(Game game, Position attacker, Position defender) {
+    private int redWon, blueWon;
+
+    public EpsilonCivBattle() {
+        redWon = 0;
+        blueWon = 0;
+    }
+
+    public boolean getBattleResult(Game game, Position attacker, Position defender, Die die) {
         Unit attackUnit = game.getUnitAt(attacker);
         Unit defendUnit = game.getUnitAt(defender);
+
+        Player attackOwner = attackUnit.getOwner();
 
         int attackingStrength = attackUnit.getAttackingStrength();
         int defendingStrength = game.getUnitAt(defender).getDefensiveStrength();
@@ -21,14 +27,26 @@ public class EpsilonCivBattle implements BattleStrategy {
         attackingStrength *= Utility.getTerrainFactor(game, attacker);
         defendingStrength *= Utility.getTerrainFactor(game, defender);
 
-        if (attackingStrength * roll() > defendingStrength * roll()) {
+        if (attackingStrength * die.rollDie() > defendingStrength * die.rollDie()) {
+            System.out.println("TEST");
+            if (attackOwner.equals(Player.RED)) {
+                redWon++;
+            } else if (attackOwner.equals(Player.BLUE)) {
+                blueWon++;
+            }
             return true;
         } else {
             return false;
         }
     }
 
-    private int roll() {
-        return (int) (Math.random() * 6) + 1;
+    public int getWon(Player player) {
+        if (player.equals(Player.RED)) {
+            return redWon;
+        } else if (player.equals(Player.BLUE)) {
+            return blueWon;
+        } else {
+            return 0;
+        }
     }
 }

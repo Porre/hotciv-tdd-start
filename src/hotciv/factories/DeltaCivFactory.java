@@ -27,6 +27,6 @@ public class DeltaCivFactory implements AbstractFactory{
 
     @Override
     public WorldLayoutStrategy getWorldLayoutStrategy() {
-        return new AlphaCivWorldLayout();
+        return new DeltaCivWorldLayout();
     }
 }

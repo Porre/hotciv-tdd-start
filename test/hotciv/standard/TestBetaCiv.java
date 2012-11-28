@@ -1,5 +1,7 @@
 package hotciv.standard;
 
+import hotciv.factories.AlphaCivFactory;
+import hotciv.factories.BetaCivFactory;
 import hotciv.framework.*;
 import hotciv.variants.*;
 import org.junit.Before;
@@ -12,8 +14,7 @@ public class TestBetaCiv {
     /** Fixture for betaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new BetaCivAge(), new BetaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout()
-        , new EpsilonCivBattle());
+        game = new GameImpl(new BetaCivFactory(), new DieImpl());
     }
 
     @Test

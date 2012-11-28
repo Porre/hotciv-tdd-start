@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.factories.AbstractFactory;
 import hotciv.framework.*;
 
 import java.util.*;
@@ -32,29 +33,30 @@ public class GameImpl implements Game {
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldStrategy;
     private BattleStrategy battleStrategy;
-    private int redAttacksWon, blueAttacksWon;
+    private Die die;
     private int roundNumber;
 
-    public GameImpl(AgeStrategy age, WinStrategy win, UnitActionStrategy action, WorldLayoutStrategy layout,
-        BattleStrategy battle) {
-        ageStrategy = age;
-        winStrategy = win;
-        unitActionStrategy = action;
-        worldStrategy = layout;
-        battleStrategy = battle;
+    public GameImpl(AbstractFactory factory, Die d) {
+        ageStrategy = factory.getAgeStrategy();
+        winStrategy = factory.getWinStrategy();
+        unitActionStrategy = factory.getUnitActionStrategy();
+        worldStrategy = factory.getWorldLayoutStrategy();
+        battleStrategy = factory.getBattleStrategy();
 
-        cities = layout.getCityLayout();
-        units = layout.getUnitLayout();
+        cities = worldStrategy.getCityLayout();
+        units = worldStrategy.getUnitLayout();
 
         // RED player starts
         currentPlayer = Player.RED;
+
+        die = d;
 
         roundNumber = 1;
 
         // 16x16 array of tiles (the world)
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
         generateWorld();
-     }
+    }
 
     public Tile getTileAt(Position p) {
         return world[p.getRow()][p.getColumn()];
@@ -81,13 +83,7 @@ public class GameImpl implements Game {
     }
 
     public int getAttacksWon(Player player) {
-        if (player.equals(Player.RED)) {
-            return redAttacksWon;
-        } else if (player.equals(Player.BLUE)) {
-            return blueAttacksWon;
-        } else {
-            return 0;
-        }
+        return battleStrategy.getWon(player);
     }
 
     public boolean moveUnit(Position from, Position to) {
@@ -106,13 +102,8 @@ public class GameImpl implements Game {
         } else if (!unitFrom.getOwner().equals(currentPlayer)) {
             return false;
         } else if (unitTo != null) {
-            if (battleStrategy.getBattleResult(this, from, to)) {
+            if (battleStrategy.getBattleResult(this, from, to, die)) {
                 units.remove(to);
-                if (unitFrom.getOwner().equals(Player.RED)) {
-                    redAttacksWon++;
-                } else {
-                    blueAttacksWon++;
-                }
             } else {
                 units.remove(from);
                 return true;
@@ -281,4 +272,5 @@ public class GameImpl implements Game {
     public int getRound() {
         return roundNumber;
     }
+
 }

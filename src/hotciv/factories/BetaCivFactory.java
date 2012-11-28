@@ -7,7 +7,7 @@ import java.lang.*;
 public class BetaCivFactory implements AbstractFactory{
     @Override
     public AgeStrategy getAgeStrategy() {
-        return new AlphaCivAction();
+        return new BetaCivAge();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class BetaCivFactory implements AbstractFactory{
 
     @Override
     public WinStrategy getWinStrategy() {
-        return new AlphaCivWin();
+        return new BetaCivWin();
     }
 
     @Override

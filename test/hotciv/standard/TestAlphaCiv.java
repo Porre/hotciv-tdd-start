@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.factories.AlphaCivFactory;
 import hotciv.framework.*;
 
 import hotciv.variants.*;
@@ -31,8 +32,7 @@ public class TestAlphaCiv {
     /** Fixture for alphaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout(),
-                new AlphaCivBattle());
+        game = new GameImpl(new AlphaCivFactory(), new DieImpl());
     }
 
     @Test

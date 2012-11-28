@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.factories.GammaCivFactory;
 import hotciv.framework.*;
 
 import hotciv.variants.*;
@@ -12,8 +13,7 @@ public class TestGammaCiv {
     /** Fixture for GammaCiv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new GammaCivAction(), new AlphaCivWorldLayout(),
-                new EpsilonCivBattle());
+        game = new GameImpl(new GammaCivFactory(), new DieImpl());
     }
 
     @Test

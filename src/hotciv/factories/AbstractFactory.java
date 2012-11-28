@@ -1,11 +1,11 @@
 package hotciv.factories;
 
-/**
- * Created with IntelliJ IDEA.
- * User: klausfyhn
- * Date: 28/11/12
- * Time: 11:48
- * To change this template use File | Settings | File Templates.
- */
+import hotciv.framework.*;
+
 public interface AbstractFactory {
+    public AgeStrategy getAgeStrategy();
+    public BattleStrategy getBattleStrategy();
+    public UnitActionStrategy getUnitActionStrategy();
+    public WinStrategy getWinStrategy();
+    public WorldLayoutStrategy getWorldLayoutStrategy();
 }

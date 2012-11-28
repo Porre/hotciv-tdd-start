@@ -1,5 +1,7 @@
 package hotciv.standard;
 
+import hotciv.factories.AlphaCivFactory;
+import hotciv.factories.DeltaCivFactory;
 import hotciv.framework.*;
 import hotciv.variants.*;
 import org.junit.Before;
@@ -13,8 +15,7 @@ public class TestDeltaCiv {
     /** Fixture for deltaciv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new AlphaCivWin(), new AlphaCivAction(), new DeltaCivWorldLayout(),
-                new EpsilonCivBattle());
+        game = new GameImpl(new DeltaCivFactory(), new DieImpl());
     }
 
     @Test

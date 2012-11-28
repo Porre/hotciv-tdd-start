@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.factories.ZetaCivFactory;
 import hotciv.framework.*;
 import hotciv.variants.*;
 import org.junit.Before;
@@ -14,8 +15,7 @@ public class TestZetaCiv {
     /** Fixture for ZetaCiv testing. */
     @Before
     public void setUp() {
-        game = new GameImpl(new AlphaCivAge(), new ZetaCivWin(), new AlphaCivAction(), new AlphaCivWorldLayout()
-            , new AlphaCivBattle());
+        game = new GameImpl(new ZetaCivFactory(), new DieImpl());
     }
 
     @Test

@@ -17,7 +17,7 @@ public class GammaCivFactory implements AbstractFactory{
 
     @Override
     public UnitActionStrategy getUnitActionStrategy() {
-        return new AlphaCivAction();
+        return new GammaCivAction();
     }
 
     @Override

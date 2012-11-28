@@ -22,7 +22,7 @@ public class ZetaCivFactory implements AbstractFactory{
 
     @Override
     public WinStrategy getWinStrategy() {
-        return new AlphaCivWin();
+        return new ZetaCivWin();
     }
 
     @Override
