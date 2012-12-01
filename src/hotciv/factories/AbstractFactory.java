@@ -7,5 +7,6 @@ public interface AbstractFactory {
     public BattleStrategy getBattleStrategy();
     public UnitActionStrategy getUnitActionStrategy();
     public WinStrategy getWinStrategy();
+    public WorkforceFocusStrategy getWorkforceFocusStrategy();
     public WorldLayoutStrategy getWorldLayoutStrategy();
 }

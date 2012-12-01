@@ -3,7 +3,7 @@ package hotciv.factories;
 import hotciv.framework.*;
 import hotciv.variants.*;
 
-public class AlphaCivFactory implements AbstractFactory {
+public class EtaCivFactory implements AbstractFactory {
 
     @Override
     public AgeStrategy getAgeStrategy() {
@@ -27,7 +27,7 @@ public class AlphaCivFactory implements AbstractFactory {
 
     @Override
     public WorkforceFocusStrategy getWorkforceFocusStrategy() {
-        return new AlphaCivWorkforceFocusStrategy();
+        return new EtaCivWorkforceFocusStrategy();
     }
 
     @Override

@@ -31,6 +31,7 @@ public class GameImpl implements Game {
     private AgeStrategy ageStrategy;
     private WinStrategy winStrategy;
     private UnitActionStrategy unitActionStrategy;
+    private WorkforceFocusStrategy workforceFocusStrategy;
     private WorldLayoutStrategy worldStrategy;
     private BattleStrategy battleStrategy;
     private Die die;
@@ -41,6 +42,7 @@ public class GameImpl implements Game {
         winStrategy = factory.getWinStrategy();
         unitActionStrategy = factory.getUnitActionStrategy();
         worldStrategy = factory.getWorldLayoutStrategy();
+        workforceFocusStrategy = factory.getWorkforceFocusStrategy();
         battleStrategy = factory.getBattleStrategy();
 
         cities = worldStrategy.getCityLayout();
@@ -129,11 +131,13 @@ public class GameImpl implements Game {
             roundNumber++;
         }
 
-        // Accumulate production points for cities
-        ArrayList<City> cityList = getCitiesOwnedByPlayer(currentPlayer);
+        // Accumulate production/food points for cities
+        ArrayList<Position> cityList = getCityPositionsOwnedByPlayer(currentPlayer);
         for (int i = 0; i < cityList.size(); i++) {
-            CityImpl city = (CityImpl) cityList.get(i);
-            city.accumulateTotalProductionPoints();
+            CityImpl city = (CityImpl) cities.get(cityList.get(i));
+            city.accumulateTotalProductionPoints(workforceFocusStrategy.getIncreaseOfProduction(this, cityList.get(i)));
+            city.accumulateTotalFoodPoints(workforceFocusStrategy.getIncreaseOfFood(this, cityList.get(i)));
+            workforceFocusStrategy.increaseCitySize(this, cityList.get(i));
         }
 
         // Create new units and deduct production
@@ -250,12 +254,13 @@ public class GameImpl implements Game {
         }
     }
 
-    public ArrayList<City> getCitiesOwnedByPlayer(Player player) {
-        ArrayList<City> list = new ArrayList<City>();
+    public ArrayList<Position> getCityPositionsOwnedByPlayer(Player player) {
+        ArrayList<Position> list = new ArrayList<Position>();
         for (Map.Entry c : cities.entrySet()) {
             City city = (City) c.getValue();
+            Position position = (Position) c.getKey();
             if (city.getOwner().equals(player)) {
-                list.add(city);
+                list.add(position);
             }
         }
         return list;

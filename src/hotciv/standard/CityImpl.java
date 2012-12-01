@@ -9,12 +9,17 @@ public class CityImpl implements City {
 
     private Player owner;
     private String production;
-    private int productionPerTurn = 6;
+    private String balance;
     private int productionTotal;
+    private int foodTotal;
+    private int size;
 
     public CityImpl(Player player) {
         owner = player;
         productionTotal = 0;
+        foodTotal = 0;
+        size = 1;
+        balance = GameConstants.productionFocus;
     }
 
     public Player getOwner() {
@@ -26,7 +31,11 @@ public class CityImpl implements City {
     }
 
     public int getSize() {
-        return 1;
+        return size;
+    }
+
+    public void increaseCitySize() {
+        size++;
     }
 
     public String getProduction() {
@@ -38,11 +47,19 @@ public class CityImpl implements City {
     }
 
     public String getWorkforceFocus() {
-        return GameConstants.productionFocus;
+        return balance;
     }
 
-    public void accumulateTotalProductionPoints() {
-        productionTotal += productionPerTurn;
+    public void setWorkforceFocus(String focus) {
+        balance = focus;
+    }
+
+    public void accumulateTotalProductionPoints(int value) {
+        productionTotal += value;
+    }
+
+    public void accumulateTotalFoodPoints(int value) {
+        foodTotal += value;
     }
 
     public void deductProductionPoints(String unitType) {
@@ -57,5 +74,9 @@ public class CityImpl implements City {
 
     public int getProductionTotal() {
         return productionTotal;
+    }
+
+    public int getFoodTotal() {
+        return foodTotal;
     }
 }

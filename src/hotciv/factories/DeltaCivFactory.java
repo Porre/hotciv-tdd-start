@@ -26,6 +26,11 @@ public class DeltaCivFactory implements AbstractFactory{
     }
 
     @Override
+    public WorkforceFocusStrategy getWorkforceFocusStrategy() {
+        return new AlphaCivWorkforceFocusStrategy();
+    }
+
+    @Override
     public WorldLayoutStrategy getWorldLayoutStrategy() {
         return new DeltaCivWorldLayout();
     }

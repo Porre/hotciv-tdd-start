@@ -26,6 +26,11 @@ public class ZetaCivFactory implements AbstractFactory{
     }
 
     @Override
+    public WorkforceFocusStrategy getWorkforceFocusStrategy() {
+        return new AlphaCivWorkforceFocusStrategy();
+    }
+
+    @Override
     public WorldLayoutStrategy getWorldLayoutStrategy() {
         return new AlphaCivWorldLayout();
     }

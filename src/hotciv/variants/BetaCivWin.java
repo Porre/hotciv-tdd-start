@@ -10,9 +10,9 @@ public class BetaCivWin implements WinStrategy {
     public Player getWinner(Game game)  {
         GameImpl g = (GameImpl) game;
 
-        if (g.getCitiesOwnedByPlayer(Player.RED).isEmpty()) {
+        if (g.getCityPositionsOwnedByPlayer(Player.RED).isEmpty()) {
             return Player.BLUE;
-        } else if (g.getCitiesOwnedByPlayer(Player.BLUE).isEmpty()) {
+        } else if (g.getCityPositionsOwnedByPlayer(Player.BLUE).isEmpty()) {
             return Player.RED;
         } else {
             return null;
