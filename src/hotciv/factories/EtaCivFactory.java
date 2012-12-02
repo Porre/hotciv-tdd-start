@@ -12,7 +12,7 @@ public class EtaCivFactory implements AbstractFactory {
 
     @Override
     public BattleStrategy getBattleStrategy() {
-        return new AlphaCivBattle();
+        return new AlphaCivBattle(new EpsilonCivWin());
     }
 
     @Override

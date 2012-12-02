@@ -5,11 +5,10 @@ import hotciv.standard.Utility;
 
 public class EpsilonCivBattle implements BattleStrategy {
 
-    private int redWon, blueWon;
+    private EpsilonCivWin epsilonWin;
 
-    public EpsilonCivBattle() {
-        redWon = 0;
-        blueWon = 0;
+    public EpsilonCivBattle(EpsilonCivWin winStrategy) {
+        epsilonWin = winStrategy;
     }
 
     public boolean getBattleResult(Game game, Position attacker, Position defender, Die die) {
@@ -28,25 +27,14 @@ public class EpsilonCivBattle implements BattleStrategy {
         defendingStrength *= Utility.getTerrainFactor(game, defender);
 
         if (attackingStrength * die.rollDie() > defendingStrength * die.rollDie()) {
-            System.out.println("TEST");
             if (attackOwner.equals(Player.RED)) {
-                redWon++;
+                epsilonWin.increaseAttacksWon(attackOwner);
             } else if (attackOwner.equals(Player.BLUE)) {
-                blueWon++;
+                epsilonWin.increaseAttacksWon(attackOwner);
             }
             return true;
         } else {
             return false;
-        }
-    }
-
-    public int getWon(Player player) {
-        if (player.equals(Player.RED)) {
-            return redWon;
-        } else if (player.equals(Player.BLUE)) {
-            return blueWon;
-        } else {
-            return 0;
         }
     }
 }

@@ -10,6 +10,4 @@ public interface BattleStrategy {
      * @return true if attacking unit wins, false if defending unit wins
      */
     public boolean getBattleResult(Game game, Position attacker, Position defender, Die die);
-
-    public int getWon(Player player);
 }

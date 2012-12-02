@@ -5,6 +5,13 @@ import hotciv.variants.*;
 import java.lang.*;
 
 public class ZetaCivFactory implements AbstractFactory{
+
+    private EpsilonCivWin winStrategy;
+
+    public ZetaCivFactory() {
+        winStrategy = new EpsilonCivWin();
+    }
+
     @Override
     public AgeStrategy getAgeStrategy() {
         return new AlphaCivAge();
@@ -12,7 +19,7 @@ public class ZetaCivFactory implements AbstractFactory{
 
     @Override
     public BattleStrategy getBattleStrategy() {
-        return new AlphaCivBattle();
+        return new AlphaCivBattle(winStrategy);
     }
 
     @Override
@@ -22,7 +29,7 @@ public class ZetaCivFactory implements AbstractFactory{
 
     @Override
     public WinStrategy getWinStrategy() {
-        return new ZetaCivWin();
+        return new ZetaCivWin(winStrategy);
     }
 
     @Override

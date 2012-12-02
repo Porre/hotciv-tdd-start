@@ -84,10 +84,6 @@ public class GameImpl implements Game {
         return ageStrategy.getAge();
     }
 
-    public int getAttacksWon(Player player) {
-        return battleStrategy.getWon(player);
-    }
-
     public boolean moveUnit(Position from, Position to) {
         Tile destinationTile = world[to.getRow()][to.getColumn()];
         String type = destinationTile.getTypeString();

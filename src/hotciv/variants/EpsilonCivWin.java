@@ -7,14 +7,29 @@ import hotciv.standard.GameImpl;
 
 public class EpsilonCivWin implements WinStrategy {
 
+    private int redAttacksWon;
+    private int blueAttacksWon;
+
+    public EpsilonCivWin() {
+        redAttacksWon = 0;
+        blueAttacksWon = 0;
+    }
+
     public Player getWinner(Game game) {
-        GameImpl g = (GameImpl) game;
-        if (g.getAttacksWon(Player.RED) >= 3) {
+        if (redAttacksWon >= 3) {
             return Player.RED;
-        } else if (g.getAttacksWon(Player.BLUE) >= 3) {
+        } else if (blueAttacksWon >= 3) {
             return Player.BLUE;
         } else {
             return null;
+        }
+    }
+
+    public void increaseAttacksWon(Player player) {
+        if (player.equals(Player.RED)) {
+            redAttacksWon++;
+        } else if (player.equals(Player.BLUE)) {
+            blueAttacksWon++;
         }
     }
 }
