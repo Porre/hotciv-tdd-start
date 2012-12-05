@@ -7,13 +7,6 @@ import hotciv.standard.UnitImpl;
 
 import java.util.HashMap;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Klaus Fyhn Jacobsen
- * Date: 19-11-12
- * Time: 22:05
- * To change this template use File | Settings | File Templates.
- */
 public class GammaCivAction implements UnitActionStrategy {
 
     @Override
@@ -35,5 +28,4 @@ public class GammaCivAction implements UnitActionStrategy {
             }
         }
     }
-
 }

@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.factories.AbstractFactory;
 import hotciv.framework.*;
+import hotciv.variants.EpsilonCivWin;
+import hotciv.variants.ZetaCivWin;
 
 import java.util.*;
 
@@ -27,6 +29,7 @@ public class GameImpl implements Game {
     private Tile[][] world;
     private HashMap<Position, City> cities;
     private HashMap<Position, Unit> units;
+    private ArrayList<UnitWinCount> winList;
     private Player currentPlayer;
     private AgeStrategy ageStrategy;
     private WinStrategy winStrategy;
@@ -38,8 +41,11 @@ public class GameImpl implements Game {
     private int roundNumber;
 
     public GameImpl(AbstractFactory factory, Die d) {
+        // MUST BE ABOVE getWinStrategy!!!
+        winList = new ArrayList<UnitWinCount>();
+
         ageStrategy = factory.getAgeStrategy();
-        winStrategy = factory.getWinStrategy();
+        winStrategy = factory.getWinStrategy(this);
         unitActionStrategy = factory.getUnitActionStrategy();
         worldStrategy = factory.getWorldLayoutStrategy();
         workforceFocusStrategy = factory.getWorkforceFocusStrategy();
@@ -47,6 +53,8 @@ public class GameImpl implements Game {
 
         cities = worldStrategy.getCityLayout();
         units = worldStrategy.getUnitLayout();
+
+
 
         // RED player starts
         currentPlayer = Player.RED;
@@ -101,6 +109,7 @@ public class GameImpl implements Game {
             return false;
         } else if (unitTo != null) {
             if (battleStrategy.getBattleResult(this, from, to, die)) {
+                unitKilledNotify(getUnitAt(from).getOwner());
                 units.remove(to);
             } else {
                 units.remove(from);
@@ -274,4 +283,13 @@ public class GameImpl implements Game {
         return roundNumber;
     }
 
+    public void unitKilledNotify(Player player) {
+        for (UnitWinCount u : winList) {
+            u.increaseWins(player);
+        }
+    }
+
+    public void registerWinStrategy(UnitWinCount w) {
+        winList.add(w);
+    }
 }

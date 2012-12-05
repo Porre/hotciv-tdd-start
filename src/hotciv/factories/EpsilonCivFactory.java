@@ -6,11 +6,7 @@ import java.lang.*;
 
 public class EpsilonCivFactory implements AbstractFactory{
 
-    private EpsilonCivWin winStrategy;
 
-    public EpsilonCivFactory() {
-        winStrategy = new EpsilonCivWin();
-    }
 
     @Override
     public AgeStrategy getAgeStrategy() {
@@ -19,7 +15,7 @@ public class EpsilonCivFactory implements AbstractFactory{
 
     @Override
     public BattleStrategy getBattleStrategy() {
-        return new EpsilonCivBattle(winStrategy);
+        return new EpsilonCivBattle();
     }
 
     @Override
@@ -28,8 +24,8 @@ public class EpsilonCivFactory implements AbstractFactory{
     }
 
     @Override
-    public WinStrategy getWinStrategy() {
-        return winStrategy;
+    public WinStrategy getWinStrategy(Game game) {
+        return new EpsilonCivWin(game);
     }
 
     @Override

@@ -55,10 +55,6 @@ public class TestEpsilonCiv {
 
     @Test
     public void redWinsAfter3WonAttacks() {
-        /**
-         * 3 fights that RED is 100% sure to win.
-         */
-
         // Set RED to produce LEGION
         game.changeProductionInCityAt(new Position(1, 1), GameConstants.LEGION);
         game.endOfTurn(); // BLUE's turn

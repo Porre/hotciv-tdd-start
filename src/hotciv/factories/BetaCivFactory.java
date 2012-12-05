@@ -5,6 +5,7 @@ import hotciv.variants.*;
 import java.lang.*;
 
 public class BetaCivFactory implements AbstractFactory{
+
     @Override
     public AgeStrategy getAgeStrategy() {
         return new BetaCivAge();
@@ -12,7 +13,7 @@ public class BetaCivFactory implements AbstractFactory{
 
     @Override
     public BattleStrategy getBattleStrategy() {
-        return new AlphaCivBattle(new EpsilonCivWin());
+        return new AlphaCivBattle();
     }
 
     @Override
@@ -21,7 +22,7 @@ public class BetaCivFactory implements AbstractFactory{
     }
 
     @Override
-    public WinStrategy getWinStrategy() {
+    public WinStrategy getWinStrategy(Game game) {
         return new BetaCivWin();
     }
 

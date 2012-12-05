@@ -2,17 +2,20 @@ package hotciv.variants;
 
 import hotciv.framework.Game;
 import hotciv.framework.Player;
+import hotciv.framework.UnitWinCount;
 import hotciv.framework.WinStrategy;
 import hotciv.standard.GameImpl;
 
-public class EpsilonCivWin implements WinStrategy {
+public class EpsilonCivWin implements WinStrategy, UnitWinCount {
 
     private int redAttacksWon;
     private int blueAttacksWon;
 
-    public EpsilonCivWin() {
+    public EpsilonCivWin(Game game) {
         redAttacksWon = 0;
         blueAttacksWon = 0;
+        GameImpl g = (GameImpl) game;
+        g.registerWinStrategy(this);
     }
 
     public Player getWinner(Game game) {
@@ -25,7 +28,7 @@ public class EpsilonCivWin implements WinStrategy {
         }
     }
 
-    public void increaseAttacksWon(Player player) {
+    public void increaseWins(Player player) {
         if (player.equals(Player.RED)) {
             redAttacksWon++;
         } else if (player.equals(Player.BLUE)) {

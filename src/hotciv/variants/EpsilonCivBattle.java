@@ -5,12 +5,6 @@ import hotciv.standard.Utility;
 
 public class EpsilonCivBattle implements BattleStrategy {
 
-    private EpsilonCivWin epsilonWin;
-
-    public EpsilonCivBattle(EpsilonCivWin winStrategy) {
-        epsilonWin = winStrategy;
-    }
-
     public boolean getBattleResult(Game game, Position attacker, Position defender, Die die) {
         Unit attackUnit = game.getUnitAt(attacker);
         Unit defendUnit = game.getUnitAt(defender);
@@ -28,9 +22,9 @@ public class EpsilonCivBattle implements BattleStrategy {
 
         if (attackingStrength * die.rollDie() > defendingStrength * die.rollDie()) {
             if (attackOwner.equals(Player.RED)) {
-                epsilonWin.increaseAttacksWon(attackOwner);
+
             } else if (attackOwner.equals(Player.BLUE)) {
-                epsilonWin.increaseAttacksWon(attackOwner);
+
             }
             return true;
         } else {

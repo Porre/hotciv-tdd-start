@@ -6,12 +6,6 @@ import java.lang.*;
 
 public class ZetaCivFactory implements AbstractFactory{
 
-    private EpsilonCivWin winStrategy;
-
-    public ZetaCivFactory() {
-        winStrategy = new EpsilonCivWin();
-    }
-
     @Override
     public AgeStrategy getAgeStrategy() {
         return new AlphaCivAge();
@@ -19,7 +13,7 @@ public class ZetaCivFactory implements AbstractFactory{
 
     @Override
     public BattleStrategy getBattleStrategy() {
-        return new AlphaCivBattle(winStrategy);
+        return new AlphaCivBattle();
     }
 
     @Override
@@ -28,8 +22,8 @@ public class ZetaCivFactory implements AbstractFactory{
     }
 
     @Override
-    public WinStrategy getWinStrategy() {
-        return new ZetaCivWin(winStrategy);
+    public WinStrategy getWinStrategy(Game game) {
+        return new ZetaCivWin(game);
     }
 
     @Override

@@ -91,6 +91,10 @@ public class TestZetaCiv {
         // BLUE LEGION attacks RED SETTLER (and wins)
         game.moveUnit(new Position(3, 1), new Position(2, 1));
         assertNull("There should be no winner of the game yet", game.getWinner());
+
+        wait(20);
+        assertNull("There should still be no winner of the game, the 3 wins were before" +
+                " the 20 rounds", game.getWinner());
     }
 
     @Test
@@ -127,5 +131,12 @@ public class TestZetaCiv {
         // BLUE LEGION attacks RED ARCHER (and wins)
         game.moveUnit(new Position(3, 2), new Position(2, 1));
         assertEquals("Blue should have won", Player.BLUE, game.getWinner());
+    }
+
+    private void wait(int time) {
+        for (int i = 0; i < time; i++) {
+            game.endOfTurn();
+            game.endOfTurn();
+        }
     }
 }
