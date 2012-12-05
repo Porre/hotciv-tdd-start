@@ -43,10 +43,11 @@ public class TestZetaCiv {
     public void at20RoundsOrLaterOwningAllCitiesDoesNotGiveAWin() {
         game.moveUnit(new Position(2,0), new Position(3,0));
 
-        for (int i = 0; i < 20; i++) {
-            game.endOfTurn();
-            game.endOfTurn();
-        }
+        wait(19);
+        game.getWinner();
+
+        game.endOfTurn();
+        game.endOfTurn();
 
         game.moveUnit(new Position(3, 0), new Position(4, 1));
         assertNull("There should be no winner yet", game.getWinner());
@@ -79,10 +80,7 @@ public class TestZetaCiv {
         game.endOfTurn();
 
         // Wait for RED SETTLER to be made
-        game.endOfTurn();
-        game.endOfTurn();
-        game.endOfTurn();
-        game.endOfTurn();
+        wait(2);
 
         // RED SETTLER moves
         game.moveUnit(new Position(1, 1), new Position(2, 1));
@@ -92,7 +90,10 @@ public class TestZetaCiv {
         game.moveUnit(new Position(3, 1), new Position(2, 1));
         assertNull("There should be no winner of the game yet", game.getWinner());
 
-        wait(20);
+        wait(14);
+        game.getWinner();
+
+        wait(10);
         assertNull("There should still be no winner of the game, the 3 wins were before" +
                 " the 20 rounds", game.getWinner());
     }

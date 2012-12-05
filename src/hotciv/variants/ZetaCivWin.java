@@ -6,7 +6,7 @@ import hotciv.framework.UnitWinCount;
 import hotciv.framework.WinStrategy;
 import hotciv.standard.GameImpl;
 
-public class ZetaCivWin implements WinStrategy, UnitWinCount {
+public class ZetaCivWin implements WinStrategy {
 
     private BetaCivWin betaWin;
     private EpsilonCivWin epsilonWin;
@@ -14,24 +14,20 @@ public class ZetaCivWin implements WinStrategy, UnitWinCount {
 
     public ZetaCivWin(Game game) {
         betaWin = new BetaCivWin();
-        epsilonWin = new EpsilonCivWin(game);
         g = (GameImpl) game;
-        g.registerWinStrategy(this);
     }
 
     public Player getWinner(Game game) {
+        if (g.getRound() == 20) {
+            epsilonWin = new EpsilonCivWin(game);
+        }
+
         if (g.getRound() <= 20) {
             return betaWin.getWinner(game);
         } else if (g.getRound() > 20) {
             return epsilonWin.getWinner(game);
         } else {
             return null;
-        }
-    }
-
-    public void increaseWins(Player player) {
-        if (g.getRound() > 20) {
-            epsilonWin.increaseWins(player);
         }
     }
 }

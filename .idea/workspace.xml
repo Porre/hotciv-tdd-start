@@ -6,24 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53b12c46-ee25-4e99-8a7d-750a3f8172f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/framework/UnitWinCount.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hotciv/factories/SemiCivFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/AbstractFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/AbstractFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/AlphaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/AlphaCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/BetaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/BetaCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/DeltaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/DeltaCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/EtaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/EtaCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/GammaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/GammaCivFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java" afterPath="$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" afterPath="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivBattle.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivBattle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/GammaCivAction.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/GammaCivAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java" afterPath="$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" afterPath="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" />
     </list>
     <ignored path="HotCiv.iws" />
@@ -87,65 +74,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ZetaCivWin.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java">
+      <file leaf-file-name="SemiCivFactory.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hotciv/factories/SemiCivFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="46" selection-start="620" selection-end="620" vertical-scroll-proportion="0.46875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EpsilonCivWin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestZetaCiv.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="0" selection-start="2984" selection-end="2984" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ZetaCivFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="287" column="86" selection-start="10187" selection-end="10187" vertical-scroll-proportion="-8.961538">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestEpsilonCiv.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="47" selection-start="429" selection-end="429" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EpsilonCivFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="42" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="23" column="62" selection-start="521" selection-end="521" vertical-scroll-proportion="0.4583822">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,11 +104,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/hotciv/variants/GammaCivAction.java" />
-        <option value="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" />
         <option value="$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java" />
         <option value="$PROJECT_DIR$/src/hotciv/framework/UnitDeathCount.java" />
-        <option value="$PROJECT_DIR$/src/hotciv/framework/UnitWinCount.java" />
         <option value="$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java" />
         <option value="$PROJECT_DIR$/src/hotciv/factories/AbstractFactory.java" />
         <option value="$PROJECT_DIR$/src/hotciv/factories/AlphaCivFactory.java" />
@@ -182,9 +114,12 @@
         <option value="$PROJECT_DIR$/src/hotciv/factories/GammaCivFactory.java" />
         <option value="$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java" />
         <option value="$PROJECT_DIR$/src/hotciv/factories/BetaCivFactory.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/framework/UnitWinCount.java" />
         <option value="$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java" />
         <option value="$PROJECT_DIR$/src/hotciv/standard/GameImpl.java" />
         <option value="$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java" />
+        <option value="$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java" />
+        <option value="$PROJECT_DIR$/src/hotciv/factories/SemiCivFactory.java" />
       </list>
     </option>
   </component>
@@ -192,10 +127,9 @@
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="x" value="960" />
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -733,7 +667,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="960" y="0" width="960" height="1040" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -744,16 +678,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2178289" sideWeight="0.16340782" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3226257" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1394976" sideWeight="0.21763393" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39971244" sideWeight="0.6703911" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21279655" sideWeight="0.70810056" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29189944" sideWeight="0.9991653" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26927373" sideWeight="0.70870537" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29129463" sideWeight="0.9991653" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32254463" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -830,115 +764,91 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/AlphaCivWin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="1" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/AbstractFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="57" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/factories/DeltaCivFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="47" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="47" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/factories/EtaCivFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="47" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="47" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/factories/GammaCivFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="47" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="47" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestDeltaCiv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="49" selection-end="49" vertical-scroll-proportion="0.050974514">
-          <folding />
-        </state>
+        <state line="2" column="23" selection-start="49" selection-end="49" vertical-scroll-proportion="0.050974514" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/factories/BetaCivFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="47" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="47" selection-start="429" selection-end="429" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="42" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/AlphaCivFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="38" selection-start="509" selection-end="518" vertical-scroll-proportion="0.4125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="287" column="86" selection-start="10187" selection-end="10187" vertical-scroll-proportion="-8.961538">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="0" selection-start="2984" selection-end="2984" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="47" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivBattle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0">
+        <state line="5" column="13" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/ZetaCivFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="662" selection-end="662" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/EpsilonCivFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="42" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestEpsilonCiv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="47" selection-start="429" selection-end="429" vertical-scroll-proportion="0.030520646">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java">
+    <entry file="file://$PROJECT_DIR$/src/hotciv/framework/UnitWinCount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="3" column="44" selection-start="103" selection-end="103" vertical-scroll-proportion="0.08947369" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hotciv/standard/TestZetaCiv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="72" selection-start="2664" selection-end="2664" vertical-scroll-proportion="1.8141447" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hotciv/variants/ZetaCivWin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="46" selection-start="620" selection-end="620" vertical-scroll-proportion="0.46875">
+        <state line="23" column="35" selection-start="584" selection-end="584" vertical-scroll-proportion="0.53125" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/variants/EpsilonCivWin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="56" selection-start="921" selection-end="921" vertical-scroll-proportion="0.72039473" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/standard/GameImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="274" column="42" selection-start="9934" selection-end="9934" vertical-scroll-proportion="0.44078946" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/AlphaCivFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="140" selection-end="820" vertical-scroll-proportion="0.1173763">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hotciv/factories/SemiCivFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="62" selection-start="521" selection-end="521" vertical-scroll-proportion="0.4583822">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

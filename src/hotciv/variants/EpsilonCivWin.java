@@ -10,11 +10,12 @@ public class EpsilonCivWin implements WinStrategy, UnitWinCount {
 
     private int redAttacksWon;
     private int blueAttacksWon;
+    private GameImpl g;
 
     public EpsilonCivWin(Game game) {
         redAttacksWon = 0;
         blueAttacksWon = 0;
-        GameImpl g = (GameImpl) game;
+        g = (GameImpl) game;
         g.registerWinStrategy(this);
     }
 

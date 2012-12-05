@@ -41,7 +41,6 @@ public class GameImpl implements Game {
     private int roundNumber;
 
     public GameImpl(AbstractFactory factory, Die d) {
-        // MUST BE ABOVE getWinStrategy!!!
         winList = new ArrayList<UnitWinCount>();
 
         ageStrategy = factory.getAgeStrategy();
@@ -54,14 +53,12 @@ public class GameImpl implements Game {
         cities = worldStrategy.getCityLayout();
         units = worldStrategy.getUnitLayout();
 
-
-
-        // RED player starts
+        // Starting settings
         currentPlayer = Player.RED;
-
-        die = d;
-
         roundNumber = 1;
+
+        // Set die
+        die = d;
 
         // 16x16 array of tiles (the world)
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
