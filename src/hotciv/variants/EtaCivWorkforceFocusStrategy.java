@@ -96,6 +96,7 @@ public class EtaCivWorkforceFocusStrategy implements WorkforceFocusStrategy {
 
     private int[] getAmountOfAllTileTypes(Game game, Position position) {
         int[] result = new int[5];
+
         Iterator<Position> iterator = Utility.get8NeighborhoodIterator(position);
         while (iterator.hasNext()) {
             String tileType = game.getTileAt(iterator.next()).getTypeString();

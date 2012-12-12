@@ -45,11 +45,11 @@ public class TestDeltaCiv {
 
     @Test
     public void shouldHaveBlueArcherAt8_3() {
-        Unit unit = game.getUnitAt(new Position(8, 3));
+        Unit unit = game.getUnitAt(new Position(3, 8));
         String type = unit.getTypeString();
         Player owner = unit.getOwner();
-        assertEquals("There should be an ARCHER at (8,3)", GameConstants.ARCHER, type);
-        assertEquals("BLUE should have an ARCHER at (8,3)", Player.BLUE, owner);
+        assertEquals("There should be an ARCHER at (3,8)", GameConstants.ARCHER, type);
+        assertEquals("BLUE should have an ARCHER at (3,8)", Player.BLUE, owner);
     }
 
     @Test

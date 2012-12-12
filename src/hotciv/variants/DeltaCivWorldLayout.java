@@ -19,7 +19,7 @@ public class DeltaCivWorldLayout implements WorldLayoutStrategy {
 
         units = new HashMap<Position, Unit>();
         units.put(new Position(4, 4), new UnitImpl(Player.BLUE, GameConstants.LEGION));
-        units.put(new Position(8, 3), new UnitImpl(Player.BLUE, GameConstants.ARCHER));
+        units.put(new Position(3, 8), new UnitImpl(Player.BLUE, GameConstants.ARCHER));
         units.put(new Position(5, 5), new UnitImpl(Player.BLUE, GameConstants.SETTLER));
 
         layout = new String[] {
