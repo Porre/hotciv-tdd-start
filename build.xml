@@ -1,6 +1,6 @@
-<!-- Build file HotCiv TDD start.
-   
-   Adapted for the dSoftArk course.
+<!-- Build file for HotCiv project.
+
+   Modified for the dSoftArk course 2010.
 
    This source code is from the book 
      "Flexible, Reliable Software:
@@ -17,128 +17,120 @@
    commercial use, see http://www.baerbak.com/
 -->
 <project name="HotCiv" default="help" basedir=".">
+    
+  <property name="sourceDirectory" value="src"/>
+  <property name="testSourceDirectory" value="test"/>
+  <property name="buildDirectory" value="build"/>
+  <property name="javadocDirectory" value="javadoc"/>
+  <property name="resource" value="resource"/>
 
-  <property name="source-directory" value="src"/>
-  <property name="test-source-directory" value="test"/>
+  <property name="minidrawJar" value="lib/minidraw.jar"/>
 
-  <property name="build-directory" value="build"/>
-  <property name="resourceDirectory" value="resource"/>
-  <property name="docDirectory" value="doc"></property>
-  
-  <property name="junitJar" value="lib/junit-4.4.jar"/>
-
-  <!-- define the class path for JUnit testing -->
-  <path id="class-path">
-    <pathelement location="${build-directory}"/>
-    <pathelement location="${junitJar}"/>
+  <path id="classPath">
+    <pathelement location="${buildDirectory}"/>
+    <pathelement location="${minidrawJar}"/>
   </path>
 
-  <!-- define classpath for Emma -->
-  <property name="emma.dir" value="lib" />
-
-  <path id="emma.lib" >
-    <pathelement location="${emma.dir}/emma.jar" />
-    <pathelement location="${emma.dir}/emma_ant.jar" />
-  </path>
-
-  <taskdef resource="emma_ant.properties" classpathref="emma.lib" />
-  
   <target name="help">
     <echo>
 HotCiv build management.
   Targets:
-    build-src: Builds production code.
-    clean:     Removes all bytecode.
-    javadoc:   Generate JavaDoc (output in doc/index.html)
+    buildSrc:      Builds production code.
+    clean:         Removes all bytecode.
+    javadoc:       Generate JavaDoc.
 
-    test:      Run JUnit test cases.
+    show:          Test MapView
+    text:          Test TextFigure
+    city:          Test CityFigure
 
-    emmatest:  Run same JUnit tests as above and in addition
-               generate Emma code coverage report in
-               coverage/index.html.
+  dSoftArk Targets:
+    update:        Test partial CivDrawing implementation
+                     (and partial solution for FRS 36.38)
     </echo>
   </target>
-  
+
   <target name="clean">
-    <delete dir="${build-directory}"/>
-    <delete dir="${docDirectory}"/>
-    <delete dir="coverage"/>
+    <delete dir="${buildDirectory}"/>
+    <delete dir="${javadocDirectory}"/>
   </target>
-  
+
   <target name="prepare">
-    <mkdir dir="${build-directory}"/>
-    <mkdir dir="${docDirectory}"/>
-  </target>
-  
-  <target name="build-src" depends="prepare">
-    <javac srcdir="${source-directory}"
-	   destdir="${build-directory}"
-	   debug="on" 
-	   includeantruntime="no" 
-	   >
-      <classpath refid="class-path"/>
-    </javac>
-  </target>
-  
-  <target name="build-test" depends="build-src">
-    <javac srcdir="${test-source-directory}"
-	   destdir="${build-directory}"
-	   debug = "on"
-	   includeantruntime="no" 
-	   >
-      <classpath refid="class-path"/>
-    </javac>
-  </target>
-  
-  <target name="build-all" depends="build-src,build-test"/>
-
-  <target name="mkdirdoc">
-    <mkdir dir="${docDirectory}"></mkdir>
+    <mkdir dir="${buildDirectory}"/>
+    <mkdir dir="${javadocDirectory}"/>
   </target>
 
-  <target name="javadoc" depends="clean,build-src,mkdirdoc">
-    <javadoc
-      source = "1.5"
-      packagenames="hotciv.*"
-      sourcepath="${source-directory}"
-      destdir="${docDirectory}"
-      package="true"
-      doctitle="&lt;b&gt;HotCiv&lt;/b&gt;"
-      bottom="&lt;b&gt;Skeleton code authored by Henrik B. Christensen &lt;/b&gt;"
-      windowtitle="HotCiv" >
-      <sourcepath> 
-	<pathelement path="${source-directory}"/> 
-      </sourcepath>
-      <classpath> 
-	<path refid="class-path"/> 
+  <target name="buildSrc" depends="prepare">
+    <javac srcdir="${sourceDirectory}"
+      destdir="${buildDirectory}">
+      <classpath refid="classPath"/>
+    </javac>
+  </target>
+
+  <target name="buildTest" depends="buildSrc">
+    <javac srcdir="${testSourceDirectory}"
+      destdir="${buildDirectory}">
+      <classpath refid="classPath"/>
+    </javac>
+  </target>
+
+  <target name="copyResource" depends="prepare">
+    <copy todir="${buildDirectory}\${resource}" >
+      <fileset dir="${resource}">
+	<include name="*.gif"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="buildAll" depends="buildSrc,buildTest,copyResource"/>
+  
+
+  <!-- run visual testing application -->
+  <target name="show" depends="buildAll">
+    <java fork="yes" classname="hotciv.visual.ShowWorld">
+      <classpath>
+	<path refid="classPath"/>
       </classpath>
-    </javadoc>
-  </target>
-
-  <!-- JUnit testing -->
-  <target name="test"  depends="build-all">
-    <java classname="org.junit.runner.JUnitCore">
-      <arg value="hotciv.standard.TestAlphaCiv"/>
-	  <arg value="hotciv.standard.TestBetaCiv"/>
-	  <arg value="hotciv.standard.TestGammaCiv"/>
-	  <arg value="hotciv.standard.TestDeltaCiv"/>
-	  <arg value="hotciv.standard.TestEpsilonCiv"/>
-	  <arg value="hotciv.standard.TestZetaCiv"/>
-	  <arg value="hotciv.standard.TestEtaCiv"/>
-      <classpath refid="class-path"/>
     </java>
   </target>
 
-  <!-- Run the test cases and let Emma make coverage report -->
-  <target name="emmatest" depends="build-all">
-    <emmajava enabled="true" libclasspathref="emma.lib" 
-	      sourcepath="${source-directory},${test-source-directory}"
-	      filter="hotciv.*"
-	      columns="name,class,method,block"
-              classname="org.junit.runner.JUnitCore">
-      <html/>
-      <arg value="hotciv.standard.TestAlphaCiv"/>
-      <classpath refid="class-path"/>
-    </emmajava>
+  <target name="text" depends="buildAll">
+    <java fork="yes" classname="hotciv.visual.ShowText">
+      <classpath>
+	<path refid="classPath"/>
+      </classpath>
+    </java>
   </target>
+
+  <target name="city" depends="buildAll">
+    <java fork="yes" classname="hotciv.visual.ShowCity">
+      <classpath>
+	<path refid="classPath"/>
+      </classpath>
+    </java>
+  </target>
+
+  <!-- dSoftArk targets -->
+  <target name="update" depends="buildAll">
+    <java fork="yes" classname="hotciv.visual.TestPartialDrawing">
+      <classpath>
+	<path refid="classPath"/>
+      </classpath>
+    </java>
+  </target>
+
+  <!-- generate javadoc -->
+  <target name="javadoc" depends="prepare">
+    <javadoc
+      packagenames="hotciv.*"
+      destdir="${javadocDirectory}"
+      sourcepath="${sourceDirectory}"
+      windowtitle="HotCiv system">
+      
+      <classpath refid="classPath"/>
+    </javadoc>
+    <echo>
+JavaDoc available in directory ${javadocDirectory}/index.html.
+    </echo>
+  </target>
+  
 </project>

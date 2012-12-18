@@ -121,6 +121,9 @@ public class GameImpl implements Game {
         units.remove(from);
         units.put(to, unitFrom);
 
+        notifyObserversWhenWorldChanges(to);
+        notifyObserversWhenWorldChanges(from);
+
         if (city != null && city.getOwner() != unitFrom.getOwner()) {
             city.setOwner(getPlayerInTurn());
         }
@@ -146,6 +149,10 @@ public class GameImpl implements Game {
             workforceFocusStrategy.increaseCitySize(this, cityList.get(i));
         }
 
+        for (GameObserver gameObserver : gameObservers) {
+            gameObserver.turnEnds(currentPlayer,getAge());
+        }
+
         // Create new units and deduct production
         handleUnitCreation(currentPlayer);
     }
@@ -159,6 +166,7 @@ public class GameImpl implements Game {
 
     public void performUnitActionAt(Position p) {
         unitActionStrategy.unitAction(this, p);
+        notifyObserversWhenWorldChanges(p);
     }
 
     private void handleUnitCreation(Player player) {
@@ -301,6 +309,12 @@ public class GameImpl implements Game {
     public void setTileFocus(Position position) {
         for (GameObserver gameObserver : gameObservers) {
             gameObserver.tileFocusChangedAt(position);
+        }
+    }
+
+    private void notifyObserversWhenWorldChanges(Position position) {
+        for (GameObserver gameObserver : gameObservers) {
+            gameObserver.worldChangedAt(position);
         }
     }
 }
