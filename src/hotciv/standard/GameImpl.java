@@ -39,6 +39,7 @@ public class GameImpl implements Game {
     private BattleStrategy battleStrategy;
     private Die die;
     private int roundNumber;
+    private ArrayList<GameObserver> gameObservers;
 
     public GameImpl(AbstractFactory factory, Die d) {
         winList = new ArrayList<UnitWinCount>();
@@ -59,6 +60,9 @@ public class GameImpl implements Game {
 
         // Set die
         die = d;
+
+        // Initialize observers
+        gameObservers = new ArrayList<GameObserver>();
 
         // 16x16 array of tiles (the world)
         world = new Tile[GameConstants.WORLDSIZE][GameConstants.WORLDSIZE];
@@ -288,5 +292,15 @@ public class GameImpl implements Game {
 
     public void registerWinStrategy(UnitWinCount w) {
         winList.add(w);
+    }
+
+    public void addObserver(GameObserver observer) {
+        gameObservers.add(observer);
+    }
+
+    public void setTileFocus(Position position) {
+        for (GameObserver gameObserver : gameObservers) {
+            gameObserver.tileFocusChangedAt(position);
+        }
     }
 }

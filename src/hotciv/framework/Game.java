@@ -104,7 +104,7 @@ public interface Game {
    * GameConstants.productionFocus and 
    * GameConstants.foodFocus.
    */
-  public void changeWorkForceFocusInCityAt(Position p, String balance);
+  public void changeWorkForceFocusInCityAt( Position p, String balance );
   
   /** change the type of unit a city will produce next. 
    * Precondition: there is a city at location 'p'.
@@ -122,4 +122,20 @@ public interface Game {
    * Nothing happens in case the unit has no associated action.
    */
   public void performUnitActionAt( Position p );  
+  
+  /** add an observer on this game instance. The game
+   * instance acts as 'subject' in the pattern.
+   * @param observer the observer to notify in case of
+   * state changes.
+   */
+  public void addObserver(GameObserver observer);
+  
+  /** set the focus on a specific tile. This will
+   * result in an event being broadcast to all
+   * observers that focus has been changed to
+   * this tile.
+   * @param position the position of the tile that
+   * has focus.
+   */
+  public void setTileFocus(Position position);
 }

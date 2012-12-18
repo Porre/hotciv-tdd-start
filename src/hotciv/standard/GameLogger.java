@@ -65,4 +65,14 @@ public class GameLogger implements Game {
         game.performUnitActionAt(p);
         System.out.println(unit.getOwner() + " is performing " + unit.getTypeString() + " action (" + p.getRow() + "," + p.getColumn() + ")");
     }
+
+    @Override
+    public void addObserver(GameObserver observer) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setTileFocus(Position position) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
