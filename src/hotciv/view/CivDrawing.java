@@ -7,15 +7,15 @@ import java.util.*;
 
 import minidraw.framework.*;
 import minidraw.standard.*;
-import minidraw.standard.handlers.*;
 
 public class CivDrawing extends StandardDrawing implements Drawing, GameObserver {
 
     protected Game game;
     protected Map<Unit, UnitFigure> figureMap = null;
-    protected Map<Unit, Figure> cityMap = null;
+    protected Map<City, CityFigure> cityMap = null;
     private ImageFigure turnShieldIcon, unitShieldIcon, cityShieldIcon,
             workforceFocusIcon, productionIcon;
+    private Point turnShieldPoint, unitShieldPoint, cityShieldPoint, workforceFocusPoint, productionPoint;
     private TextFigure moveCounter, gameAge;
 
     public CivDrawing(DrawingEditor editor, Game game) {
@@ -23,15 +23,16 @@ public class CivDrawing extends StandardDrawing implements Drawing, GameObserver
         this.game = game;
         game.addObserver(this);
         defineUnitMap();
+        defineCityMap();
         defineIcons();
     }
 
     private void defineIcons() {
-        Point turnShieldPoint = new Point(GfxConstants.TURN_SHIELD_X, GfxConstants.TURN_SHIELD_Y);
-        Point unitShieldPoint = new Point(GfxConstants.UNIT_SHIELD_X, GfxConstants.UNIT_SHIELD_Y);
-        Point cityShieldPoint = new Point(GfxConstants.CITY_SHIELD_X, GfxConstants.CITY_SHIELD_Y);
-        Point workforceFocusPoint = new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y);
-        Point productionPoint = new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y);
+        turnShieldPoint = new Point(GfxConstants.TURN_SHIELD_X, GfxConstants.TURN_SHIELD_Y);
+        unitShieldPoint = new Point(GfxConstants.UNIT_SHIELD_X, GfxConstants.UNIT_SHIELD_Y);
+        cityShieldPoint = new Point(GfxConstants.CITY_SHIELD_X, GfxConstants.CITY_SHIELD_Y);
+        workforceFocusPoint = new Point(GfxConstants.WORKFORCEFOCUS_X, GfxConstants.WORKFORCEFOCUS_Y);
+        productionPoint = new Point(GfxConstants.CITY_PRODUCTION_X, GfxConstants.CITY_PRODUCTION_Y);
 
         turnShieldIcon = new ImageFigure("redshield", turnShieldPoint);
         unitShieldIcon = new ImageFigure(GfxConstants.NOTHING, unitShieldPoint);
@@ -57,6 +58,27 @@ public class CivDrawing extends StandardDrawing implements Drawing, GameObserver
         throw new RuntimeException("Should not be used...");
     }
 
+    private void defineCityMap() {
+        clearSelection();
+
+        cityMap = new HashMap<City, CityFigure>();
+        Position p;
+
+        for (int i = 0; i < GameConstants.WORLDSIZE; i++) {
+            for (int j = 0; j < GameConstants.WORLDSIZE; j++) {
+                p = new Position(i, j);
+                City city = game.getCityAt(p);
+                if (city != null) {
+                    Point point = new Point(GfxConstants.getXFromColumn(p.getColumn()), GfxConstants.getYFromRow(p.getRow()));
+                    CityFigure cityFigure = new CityFigure(city, point);
+                    cityFigure.addFigureChangeListener(this);
+                    cityMap.put(city, cityFigure);
+                    super.add(cityFigure);
+                }
+            }
+        }
+    }
+
     private void defineUnitMap() {
         clearSelection();
 
@@ -80,47 +102,68 @@ public class CivDrawing extends StandardDrawing implements Drawing, GameObserver
         }
     }
 
-
-
     // === Observer Methods ===
 
     public void worldChangedAt(Position pos) {
-        System.out.println("UnitDrawing: world changes at " + pos);
         clearSelection();
-        // this is a really brute-force algorithm: destroy
-        // all known units and build up the entire set again
+
+        for (Figure f : cityMap.values()) {
+            super.remove(f);
+        }
+        defineCityMap();
+
         for (Figure f : figureMap.values()) {
             super.remove(f);
         }
-
         defineUnitMap();
     }
 
     public void turnEnds(Player nextPlayer, int age) {
-        // System.out.println("UnitDrawing: turnEnds for " + nextPlayer + " at " + age);
         String playername = "red";
         if (nextPlayer == Player.BLUE) {
             playername = "blue";
         }
         turnShieldIcon.set(playername + "shield", new Point(GfxConstants.TURN_SHIELD_X, GfxConstants.TURN_SHIELD_Y));
 
-        // defineUnitMap();
         setGameAge(age);
     }
 
     public void tileFocusChangedAt(Position position) {
-        System.out.println("TEST");
+        City city = game.getCityAt(position);
+        Unit unit = game.getUnitAt(position);
+        if (city != null) {
+            Player owner = city.getOwner();
+            String player = "red";
+            if (owner.equals(Player.BLUE)) {
+                player = "blue";
+            }
+            String production = city.getProduction();
+            String work = city.getWorkforceFocus();
+            workforceFocusIcon.set(work, workforceFocusPoint);
+            productionIcon.set(production, productionPoint);
+            cityShieldIcon.set(player + "shield", cityShieldPoint);
+        } else {
+            workforceFocusIcon.set(GfxConstants.NOTHING, workforceFocusPoint);
+            productionIcon.set(GfxConstants.NOTHING, productionPoint);
+            cityShieldIcon.set(GfxConstants.NOTHING, cityShieldPoint);
+        }
+
+        if (unit != null) {
+            String type = unit.getTypeString();
+            Player owner = unit.getOwner();
+            String player = "red";
+            if (owner.equals(Player.BLUE))  {
+                player = "blue";
+            }
+            unitShieldIcon.set(player + "shield", unitShieldPoint);
+            moveCounter.setText(Integer.toString(unit.getMoveCount()));
+        } else {
+            unitShieldIcon.set(GfxConstants.NOTHING, unitShieldPoint);
+            moveCounter.setText("");
+        }
     }
-
-
-
 
     /* Added help methods */
-
-    private ImageFigure getBlackFigureAt(Point position) {
-        return new ImageFigure(GfxConstants.NOTHING, position);
-    }
-
     private void setGameAge(int age) {
         if (age < 0) {
             gameAge.setText((age * (-1)) + "BC");

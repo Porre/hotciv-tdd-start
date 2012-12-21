@@ -20,6 +20,7 @@ public class CityImpl implements City {
         foodTotal = 0;
         size = 1;
         balance = GameConstants.productionFocus;
+        production = GameConstants.ARCHER;
     }
 
     public Player getOwner() {

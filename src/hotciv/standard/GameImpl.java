@@ -112,8 +112,10 @@ public class GameImpl implements Game {
             if (battleStrategy.getBattleResult(this, from, to, die)) {
                 unitKilledNotify(getUnitAt(from).getOwner());
                 units.remove(to);
+                notifyObserversWhenWorldChanges(from);
             } else {
                 units.remove(from);
+                notifyObserversWhenWorldChanges(from);
                 return true;
             }
         }
@@ -121,7 +123,6 @@ public class GameImpl implements Game {
         units.remove(from);
         units.put(to, unitFrom);
 
-        notifyObserversWhenWorldChanges(to);
         notifyObserversWhenWorldChanges(from);
 
         if (city != null && city.getOwner() != unitFrom.getOwner()) {
@@ -150,18 +151,21 @@ public class GameImpl implements Game {
         }
 
         for (GameObserver gameObserver : gameObservers) {
-            gameObserver.turnEnds(currentPlayer,getAge());
+            gameObserver.turnEnds(currentPlayer, getAge());
         }
 
         // Create new units and deduct production
         handleUnitCreation(currentPlayer);
     }
 
-    public void changeWorkForceFocusInCityAt(Position p, String balance) {}
+    public void changeWorkForceFocusInCityAt(Position p, String balance) {
+        CityImpl city = (CityImpl) cities.get(p);
+        city.setWorkforceFocus(balance);
+    }
 
     public void changeProductionInCityAt(Position p, String unitType) {
-        CityImpl c = (CityImpl) cities.get(p);
-        c.setProduction(unitType);
+        CityImpl city = (CityImpl) cities.get(p);
+        city.setProduction(unitType);
     }
 
     public void performUnitActionAt(Position p) {
@@ -182,12 +186,15 @@ public class GameImpl implements Game {
                 if (unitType.equals(GameConstants.ARCHER) && city.getProductionTotal() >= 10) {
                     units.put(positions.get(0), new UnitImpl(player, GameConstants.ARCHER));
                     city.deductProductionPoints(unitType);
+                    notifyObserversWhenWorldChanges(positions.get(0));
                 } else if (unitType.equals(GameConstants.LEGION) && city.getProductionTotal() >= 15) {
                     units.put(positions.get(0), new UnitImpl(player, GameConstants.LEGION));
                     city.deductProductionPoints(unitType);
+                    notifyObserversWhenWorldChanges(positions.get(0));
                 } else if (unitType.equals(GameConstants.SETTLER) && city.getProductionTotal() >= 30) {
                     units.put(positions.get(0), new UnitImpl(player, GameConstants.SETTLER));
                     city.deductProductionPoints(unitType);
+                    notifyObserversWhenWorldChanges(positions.get(0));
                 }
             }
         }
@@ -213,6 +220,7 @@ public class GameImpl implements Game {
         positions.add(north);
         positions.add(northEast);
         positions.add(east);
+
         positions.add(southEast);
         positions.add(south);
         positions.add(southWest);

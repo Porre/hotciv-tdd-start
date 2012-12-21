@@ -1,5 +1,7 @@
 package hotciv.visual;
 
+import hotciv.view.tools.FocusTool;
+import hotciv.view.tools.ProductionTool;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
@@ -38,7 +40,13 @@ public class TestPartialDrawing {
                 new MiniDrawApplication("Click anywhere to see Drawing updates",
                         new HotCivFactory4(game));
         editor.open();
-        editor.setTool(new UpdateTool(editor, game));
+
+        // This stub has been used for testing different tools and as such they have been commented out.
+        // editor.setTool(new UpdateTool(editor, game));
+        // editor.setTool(new FocusTool(editor, game));
+
+        editor.setTool(new ProductionTool(editor, game));
+
 
         editor.showStatus("Click anywhere to state changes reflected on the GUI");
 
@@ -87,7 +95,24 @@ class UpdateTool extends NullTool {
                 break;
             }
             case 4: {
-
+                editor.showStatus("State change: Inspecting red city at (5,5)");
+                game.setTileFocus(new Position(1, 1));
+                break;
+            }
+            case 5: {
+                editor.showStatus("State change: Inspecting red archer at (2,2)");
+                game.setTileFocus(new Position(2, 2));
+                break;
+            }
+            case 6: {
+                editor.showStatus("State change: Inspecting blue legion at (3,2)");
+                game.setTileFocus(new Position(3, 2));
+                break;
+            }
+            case 7: {
+                editor.showStatus("State change: Inspecting blue city at (4,1)");
+                game.setTileFocus(new Position(4, 1));
+                break;
             }
             default: {
                 editor.showStatus("No more changes in my list...");
@@ -96,4 +121,3 @@ class UpdateTool extends NullTool {
         count++;
     }
 }
-

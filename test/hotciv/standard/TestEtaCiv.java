@@ -86,6 +86,7 @@ public class TestEtaCiv {
         /* 1 production + 2 production = 3 */
         CityImpl city = (CityImpl) game.getCityAt(new Position(1, 1));
         city.setWorkforceFocus(GameConstants.productionFocus);
+        city.setProduction(GameConstants.LEGION);
         wait(8);
         assertEquals("City should have population 2", 2, city.getSize());
         assertEquals("City should have 8 production", 8, city.getProductionTotal());
